@@ -1,50 +1,49 @@
 # VIM - Befehle und Tastatenbelegung 
---------------------
 * `STRG-W` 	Fenster wechseln mit Pfeiltasten, oder wenn man das Terminal offen hat kann man : eingeben und andere Befehle
-[<n>] GG	wir springen zur zeile n
-:NERDTRee	NERDTree starten ( Fileexplorer)
-:terminal	Neue Console
+* `[<n>] GG`	wir springen zur zeile n
+* `:NERDTRee`	NERDTree starten ( Fileexplorer)
+* `:terminal`	Neue Console
 
 Bewegen in Dokument
 --------------------
-w,b,W,B 	Wortweise hin und herbewegen anfang eines Worts
-e		Ende eines Worts
-{[]} 		Satzweise oder Abschnittsweise 
-[<n>] GG	wir springen zur zeile n
+* `w,b,W,B` 	Wortweise hin und herbewegen anfang eines Worts
+* `e`		Ende eines Worts
+* `{[]}` 		Satzweise oder Abschnittsweise 
+* `[<n>] GG`	wir springen zur zeile n
 
 Suchen und Ersetzen
 --------------------
-:nohlsearch	löscht die herforhebung nach suchen. reicht :noh<tap>
-*		sucht genau das Wort was aktuell unter dem Curser steht
-/[Text]		sucht nach dem nächsten vorkommen von [Text] 
-n		weiter suchen
-N		vorher suchen 
-[I		Suchtrefferliste anzeigen (großes I)
+* `:nohlsearch`	löscht die herforhebung nach suchen. reicht :noh<tap>
+* `*`		sucht genau das Wort was aktuell unter dem Curser steht
+* `/[Text]`		sucht nach dem nächsten vorkommen von [Text] 
+* `n`		weiter suchen
+* `N`		vorher suchen 
+* `[I`		Suchtrefferliste anzeigen (großes I)
 
 Makros aufzeichen
 --------------------
-q[t]		beginnt mit der Aufzeichung eines makros anschliesend q drücken benendet das makro aufzeichenen
+* `q[t]	`	beginnt mit der Aufzeichung eines makros anschliesend q drücken benendet das makro aufzeichenen
 
-:tabnew
-:NERDTree
-ENDE  Diese Makro erstellt einen neuen Tab mit NERDTree am rand, kopieren kannst du das mit 0 "[register]y/ENDE
+* `:tabnew`
+* `:NERDTree`
+* `ENDE`  	Diese Makro erstellt einen neuen Tab mit NERDTree am rand, kopieren kannst du das mit 0 "[register]y/ENDE
 
 
 Umgang mit Tab
 --------------------
-t 		in NERDTree öffene die gewählten Datei in einem Neuen Tab
-gt		wechselt den Tab
+* `t `		in NERDTree öffene die gewählten Datei in einem Neuen Tab
+* `gt`		wechselt den Tab
 
 Terminal
 --------------------
-STRG-w N  	(großens N, damit kann man im :terminal modus unschalten das man den Text kopieren kann)
-i 		kommt man wieder zurück in den terminal modus
+* `STRG-w N`  	(großens N, damit kann man im :terminal modus unschalten das man den Text kopieren kann)
+* `i `		kommt man wieder zurück in den terminal modus
 
 Buffer:
 -------
-:ls 		zeigt alle offenen Buffer an
-:b <n> 		öffnet Buffer n
-:bd 		heißt buffer delete -> schließt den aktuellen buffer oder mit <n> und ! denn n-ent unter Zang.
+* `:ls `	zeigt alle offenen Buffer an
+* `:b <n>` 	öffnet Buffer n
+* `:bd` 	heißt buffer delete -> schließt den aktuellen buffer oder mit <n> und ! denn n-ent unter Zang.
 
 Register
 --------------------
