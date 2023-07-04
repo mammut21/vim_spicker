@@ -18,7 +18,9 @@ Suchen und Ersetzen
 * `/[Text]`		sucht nach dem nächsten vorkommen von [Text] 
 * `n`		weiter suchen
 * `N`		vorher suchen 
-* `[I`		Suchtrefferliste anzeigen (großes I)
+* `[I`		Suchtrefferliste anzeigen (großes I
+* `ggn`		um zum ersten Spiel zu springen, oder
+* `GN`		um zum letzten zu springen.
 
 Makros aufzeichen
 --------------------
