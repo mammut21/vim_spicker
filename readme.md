@@ -49,7 +49,7 @@ Register
 --------------------
 Die Register sind zwischenablagen welche man durch :registers auflisten kann
 bei der Verwendung von d oder dd wird in die register 1- 9 nach und nach die Daten geschrieben, die gelöscht wurden.
-mit " kann man auf ein register zugreifen, in " * ist die akuelle systemweite Zwischenablagen, mit " * p kannst du da was rein kopieren oder raus holen. 
+mit " kann man auf ein register zugreifen, in `"+` ist die akuelle systemweite Zwischenablagen, mit `"+p` kannst du da was rein kopieren oder raus holen. 
 
 
 Rezepte
