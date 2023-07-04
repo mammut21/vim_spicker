@@ -27,11 +27,11 @@ Makros aufzeichen
 * `q[t]	`	beginnt mit der Aufzeichung eines makros anschliesend q drücken benendet das makro aufzeichenen
 * ```
   :tabnew
-  NERDTree
+  :NERDTree
   ENDE
-  ``` 
-`
-* `:tabnew :NERDTree ENDE`  	Diese Makro erstellt einen neuen Tab mit NERDTree am rand, kopieren kannst du das mit `0"[register]y/ENDE`
+  ```
+  Diese Makro erstellt einen neuen Tab mit NERDTree am rand, kopieren kannst du das mit `0"[register]y/ENDE`
+  Dabei ist 0 Zeilen Anfang , " Heißt register ansteuer , / suchen dann ENDE alles in das Register kopieren
 
 
 Umgang mit Tab
