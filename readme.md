@@ -31,13 +31,13 @@ Makros aufzeichen
 
 Umgang mit Tab
 --------------------
-* `t `		in NERDTree öffene die gewählten Datei in einem Neuen Tab
+* `t`		in NERDTree öffene die gewählten Datei in einem Neuen Tab
 * `gt`		wechselt den Tab
 
 Terminal
 --------------------
 * `STRG-w N`  	(großens N, damit kann man im :terminal modus unschalten das man den Text kopieren kann)
-* `i `		kommt man wieder zurück in den terminal modus
+* `i`		kommt man wieder zurück in den terminal modus
 
 Buffer:
 -------
@@ -53,7 +53,6 @@ mit " kann man auf ein register zugreifen, in " * ist die akuelle systemweite Zw
 
 
 Rezepte
-------------------
 ------------------
 
 Mehere Zeilen Auskommentieren 
