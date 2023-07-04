@@ -62,9 +62,9 @@ STRG-v (visual Blockmodus) dann (großes I für Anfang der Zeile oder A für akt
 
 Suchen und Finden wie in Nodepad++
 --------------------
-Wenn du suchen willst wie bei Notepag++ "Alles Finden" dann mach vollgendes
-:vimgrep /Suchbegriff/ % <enter>
-:copen  -> copen öffent den Quickfix Buffer in dem dann alle Suchergebnisse drin stehen 
+Wenn du suchen willst wie bei Notepag++ "Alles Finden" dann mach folgendes
+* `:vimgrep /Suchbegriff/ % <enter>` 	% steht für den aktuellen Buffer
+* `:copen`  	-> copen öffent den Quickfix Buffer in dem dann alle Suchergebnisse drin stehen 
 
 vingrep kann auch reguläre ausdrücke und man kann statt % eine datei pfad angeben /home/mathias/ * .txt dann durchsucht es die datei anstatt des aktuellen buffers
 
