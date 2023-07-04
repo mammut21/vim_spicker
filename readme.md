@@ -25,7 +25,8 @@ Suchen und Ersetzen
 Makros aufzeichen
 --------------------
 * `q[t]	`	beginnt mit der Aufzeichung eines makros anschliesend q drücken benendet das makro aufzeichenen
-
+* `:tabnew^M:NERDTree^MENDE` 
+`
 * `:tabnew :NERDTree ENDE`  	Diese Makro erstellt einen neuen Tab mit NERDTree am rand, kopieren kannst du das mit `0"[register]y/ENDE`
 
 
