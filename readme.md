@@ -3,6 +3,7 @@
 * `[<n>] GG`	wir springen zur zeile n
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
 * `:terminal`	Neue Console
+* :set nowrap	Schalten den automatischen Zeilenumbruch aus
 
 Bewegen in Dokument
 --------------------
