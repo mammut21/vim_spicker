@@ -1,6 +1,8 @@
 # VIM - Befehle und Tastatenbelegung 
 * `STRG-W` 	Fenster wechseln mit Pfeiltasten, oder wenn man das Terminal offen hat kann man : eingeben und andere Befehle
 * `[<n>] GG`	wir springen zur zeile n
+* `gg`		Dateianfang
+* `G`		Dateiende
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
 * `:terminal`	Neue Console
 * `:set nowrap`	Schalten den automatischen Zeilenumbruch aus
@@ -38,7 +40,8 @@ Makros aufzeichen
 Umgang mit Tab
 --------------------
 * `t`		in NERDTree öffene die gewählten Datei in einem Neuen Tab
-* `gt`		wechselt den Tab
+* `gt`		wechselt zum nächsten Tab
+* `gT`		wechselt zum vorherigen Tab
 
 Terminal
 --------------------
