@@ -66,7 +66,11 @@ Rezepte
 
 Mehere Zeilen Auskommentieren 
 ------------------
-STRG-v (visual Blockmodus) dann (großes I für Anfang der Zeile oder A für aktuelle pos des Cursers) dann kannst du einfang eine Kommentierung machen, nachdem du ESC gedrück hast beendet sich das ganze.
+* `STRG-v`  (visual Blockmodus) umschalten
+* dann den Bereich markieren der auskommentiet werden soll
+*  dann (großes `I` für Anfang der Zeile oder `A` für aktuelle pos des Cursers)
+*  dann # oder // oder einen beliebigen Text eingeben, (Wichtig: es wird scheinbar nur die erste Zeile bearbeite, nach ESC werden die änderungen auch auf den markierten zeile angewand)
+*   achdem du ESC gedrück hast beendet sich das ganze.
 
 
 Suchen und Finden wie in Nodepad++
