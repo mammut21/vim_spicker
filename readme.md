@@ -55,6 +55,20 @@ Buffer:
 * `:b <n>` 	öffnet Buffer n
 * `:bd` 	heißt buffer delete -> schließt den aktuellen buffer oder mit <n> und ! denn n-ent unter Zang.
 
+Fenster:
+-------
+* `:split`		Aktuelles Fenster teilen
+* `:split <file>`	<file> in neuem Fenster öffnen
+* `:new`		Neuen Buffer in neuem Fenster öffnen
+* `:sview <file>`	:split und :view <file>
+
+C-w w		Nächstes Fenster selektieren (zyklisch)
+C-w j		Ein Fenster nach unten
+C-w k		Ein Fenster nach oben
+<n>C-w +	Fenster um <n> Zeilen vergrößern
+<n>C-w -	Fenster um <n> Zeilen verkleinern
+<n>C-w _	Fenstergröße auf <n> Zeilen setzen (ohne <n>: maximal)
+C-w =		Alle Fenster gleichgroß
 Register
 --------------------
 Die Register sind zwischenablagen welche man durch :registers auflisten kann
@@ -241,18 +255,5 @@ Dateikommandos
 :x	ZZ	Speichern und Beenden
 :w		Speichern
 
-Fenster
--------
-:split		Aktuelles Fenster teilen
-:split <file>	<file> in neuem Fenster öffnen
-:new		Neuen Buffer in neuem Fenster öffnen
-:sview <file>	:split und :view <file>
 
-C-w w		Nächstes Fenster selektieren (zyklisch)
-C-w j		Ein Fenster nach unten
-C-w k		Ein Fenster nach oben
-<n>C-w +	Fenster um <n> Zeilen vergrößern
-<n>C-w -	Fenster um <n> Zeilen verkleinern
-<n>C-w _	Fenstergröße auf <n> Zeilen setzen (ohne <n>: maximal)
-C-w =		Alle Fenster gleichgroß
 
