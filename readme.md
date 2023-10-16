@@ -24,6 +24,7 @@ Suchen und Ersetzen
 * `[I`		Suchtrefferliste anzeigen (großes I
 * `ggn`		um zum ersten Spiel zu springen, oder
 * `GN`		um zum letzten zu springen.
+* `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.  
 
 Makros aufzeichen
 --------------------
