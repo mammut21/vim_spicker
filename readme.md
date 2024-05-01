@@ -62,14 +62,14 @@ Fenster:
 * `:new`		Neuen Buffer in neuem Fenster öffnen
 * `:sview <file>`	:split und :view <file>
 
-C-w w		Nächstes Fenster selektieren (zyklisch)
-C-w j		Ein Fenster nach unten
-C-w k		Ein Fenster nach oben
-<n>C-w +	Fenster um <n> Zeilen vergrößern
-<n>C-w -	Fenster um <n> Zeilen verkleinern
-<n>C-w _	Fenstergröße auf <n> Zeilen setzen (ohne <n>: maximal)
-C-w =		Alle Fenster gleichgroß
-Register
+* `C-w w`	Nächstes Fenster selektieren (zyklisch)
+* `C-w j`		Ein Fenster nach unten
+* `C-w k`		Ein Fenster nach oben
+* `<n>C-w +`	Fenster um <n> Zeilen vergrößern
+* `<n>C-w -`	Fenster um <n> Zeilen verkleinern
+* `<n>C-w _`	Fenstergröße auf <n> Zeilen setzen (ohne <n>: maximal)
+* `C-w =`		Alle Fenster gleichgroß
+  Register
 --------------------
 Die Register sind zwischenablagen welche man durch :registers auflisten kann
 bei der Verwendung von d oder dd wird in die register 1- 9 nach und nach die Daten geschrieben, die gelöscht wurden.
