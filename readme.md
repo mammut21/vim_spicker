@@ -69,7 +69,8 @@ Fenster:
 * `<n>C-w -`	Fenster um <n> Zeilen verkleinern
 * `<n>C-w _`	Fenstergröße auf <n> Zeilen setzen (ohne <n>: maximal)
 * `C-w =`		Alle Fenster gleichgroß
-  Register
+
+Register
 --------------------
 Die Register sind zwischenablagen welche man durch :registers auflisten kann
 bei der Verwendung von d oder dd wird in die register 1- 9 nach und nach die Daten geschrieben, die gelöscht wurden.
