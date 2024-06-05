@@ -1,5 +1,6 @@
 # VIM - Befehle und Tastatenbelegung 
 * `STRG-W` 	Fenster wechseln mit Pfeiltasten, oder wenn man das Terminal offen hat kann man : eingeben und andere Befehle
+* `STRG-r` 	In der Kommandozeile Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
 * `[<n>] GG`	wir springen zur zeile n
 * `gg`		Dateianfang
 * `G`		Dateiende
