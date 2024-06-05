@@ -25,6 +25,7 @@ Suchen und Ersetzen
 * `[I`		Suchtrefferliste anzeigen (großes I
 * `ggn`		um zum ersten Spiel zu springen, oder
 * `GN`		um zum letzten zu springen.
+* `STRG-r` 	In der Kommandozeile, Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
 * `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.  
 
 Makros aufzeichen
