@@ -32,7 +32,8 @@ Suchen
 
 Suchen und Ersetzen mit :/s
 --------------------
-wenn man `:`/s eingibt kann man Text aich 
+* wenn man `:`/s eingibt kann man Text auch 
+* `:%s/==.*//g` 
 
 Makros aufzeichen
 --------------------
