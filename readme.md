@@ -36,7 +36,7 @@ wenn man `:`/s eingibt kann man Text aich
 
 Makros aufzeichen
 --------------------
-* `q[t]	`	beginnt mit der Aufzeichung eines makros anschliesend q drücken benendet das makro aufzeichenen
+* `q[t]	`	beginnt mit der Aufzeichung eines makros für den unter `t` eingegeben Buchstaben anschliesend q drücken benendet das makro aufzeichenen
 * ```
   :tabnew
   :NERDTree
