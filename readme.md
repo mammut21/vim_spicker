@@ -1,7 +1,8 @@
-# VIM - Befehle und Tastatenbelegung 
-* `STRG-W` 	Fenster wechseln mit Pfeiltasten, oder wenn man das Terminal offen hat kann man : eingeben und andere Befehle
-* `STRG-r` 	In der Kommandozeile Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
-* `[<n>] GG`	wir springen zur zeile n
+# VIM - Befehle 
+* `STRG-W` 	Fenster wechseln mit Pfeiltasten,
+  		oder wenn man das Terminal offen hat, kann man : eingeben und andere Befehle `STRG-r`
+* `STRG-r` 	Text Einfügen im `:`Kommandozeile,  dazu muss nach dem `STRG-r` noch das Register angegeben werden + für normal Zwischeanblage.
+* `[<n>] GG`	wir springen zur Zeile n
 * `gg`		Dateianfang
 * `G`		Dateiende
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
@@ -15,18 +16,23 @@ Bewegen in Dokument
 * `{[]}` 		Satzweise oder Abschnittsweise 
 * `[<n>] GG`	wir springen zur zeile n
 
-Suchen und Ersetzen
+Suchen
 --------------------
-* `:nohlsearch`	löscht die herforhebung nach suchen. reicht :noh<tap>
+* `:nohlsearch`	löscht die Herforhebung nach suchen. reicht :noh<tap>
 * `*`		sucht genau das Wort was aktuell unter dem Curser steht
-* `/[Text]`		sucht nach dem nächsten vorkommen von [Text] 
+* `/[Text]`	sucht nach dem nächsten vorkommen von [Text]
+* `/[Text]/+1/[Text2]` sucht nach einer Zeile mit Text1 und das in der nächsten Zeile Text2 steht.
 * `n`		weiter suchen
 * `N`		vorher suchen 
 * `[I`		Suchtrefferliste anzeigen (großes I
 * `ggn`		um zum ersten Spiel zu springen, oder
 * `GN`		um zum letzten zu springen.
 * `STRG-r` 	In der Kommandozeile, Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
-* `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.  
+* `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.
+
+Suchen und Ersetzen mit :/s
+--------------------
+wenn man `:`/s eingibt kann man Text aich 
 
 Makros aufzeichen
 --------------------
