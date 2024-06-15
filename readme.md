@@ -102,12 +102,12 @@ Suchen und Finden wie in Nodepad++
 Wenn du suchen willst wie bei Notepag++ "Alles Finden" dann mach folgendes
 * `:vim /Suchbegriff/ % <enter>`
 * 	% steht für den aktuellen Buffer alternativ
-* 		kann man auch **/*
-* 		oder **/*.py für rekursives suchen
-* 		oder *.py für nur in dem Verzeichnis
-* 		oder  /home/mathias/*.txt für eine konkretes Verzeichnis 
+** 	kann man auch **/*
+** 	oder **/*.py für rekursives suchen
+** 	oder *.py für nur in dem Verzeichnis
+** 	oder  /home/mathias/*.txt für eine konkretes Verzeichnis 
 * `:copen`  	-> copen öffent den Quickfix Buffer in dem dann alle Suchergebnisse drin stehen 
-* `:cclose'	Schließtm am den QuickEditor wieder
+* `:cclose`	Schließtm am den QuickEditor wieder
 vingrep kann auch reguläre ausdrücke und man kann statt % eine datei pfad angeben /home/mathias/ * .txt dann durchsucht es die datei anstatt des aktuellen buffers
 
 Navigation <motion> 
