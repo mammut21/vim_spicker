@@ -16,6 +16,16 @@ Bewegen in Dokument
 * `{[]}` 		Satzweise oder Abschnittsweise 
 * `[<n>] GG`	wir springen zur zeile n
 
+
+Suchen und Ersetzen mit :/s
+--------------------
+* wenn man `:`/s eingibt kann man Text auch 
+* `:%s/==.*//g` % bedeutet gesamtes dokument nicht nur die Zeile
+* 		/g heißt alle vorkommen und nicht nur das erste in der zeile
+* `:%s/<suchetext>/<ersetzten>/g`
+* `:%s/ \(Hallo \) /<ersetzten>/g` wenn du mit regex arbeiten möchtes und Gruppen verwendest dann müssen die maskiert werden \( 
+*  
+
 Suchen
 --------------------
 * `:nohlsearch`	löscht die Herforhebung nach suchen. reicht :noh<tap>
@@ -30,10 +40,6 @@ Suchen
 * `STRG-r` 	In der Kommandozeile, Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
 * `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.
 
-Suchen und Ersetzen mit :/s
---------------------
-* wenn man `:`/s eingibt kann man Text auch 
-* `:%s/==.*//g` 
 
 Makros aufzeichen
 --------------------
