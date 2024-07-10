@@ -12,9 +12,9 @@ VIM - Schnellübersicht
 * `:set nowrap`	Schalten den automatischen Zeilenumbruch aus
 * `<ctrl>-n`	Autovervollständigung im Einfügemodus
 * `<ctrl>-N`	Autovervollständigung im Einfügemodus alle offene Buffer
-*`%s/^[\ \t]*\n//g`	Leerzeichen entfernen
-*`set ignorecase`	Bei der suche Groß und Klein nicht unterschieden
-*`set smmatcase`	Wenn großbuchstaben verwendet werden, dann wird casesensetive gearbeitet
+* `%s/^[\ \t]*\n//g`	Leerzeichen entfernen
+* `set ignorecase`	Bei der suche Groß und Klein nicht unterschieden
+* `set smmatcase`	Wenn großbuchstaben verwendet werden, dann wird casesensetive gearbeitet
 
 
 
