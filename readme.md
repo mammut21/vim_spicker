@@ -33,6 +33,11 @@ Suchen und Ersetzen mit :/s
 * `:%s/<suchetext>/<ersetzten>/g`
 * `:%s/ \(Hallo \) /<ersetzten>/g` wenn du mit regex arbeiten möchtes und Gruppen verwendest dann müssen die maskiert werden \( 
 *  
+* `:s/abc/xyz/`	`abc` in aktueller Zeile durch `xyz` ersetzen
+* `:%s/abc/xyz`	`abc` überall durch `xyz` ersetzen
+* `:%s/<ctrl-r><ctrl-w>/xyz/g`	Wort unter Cursor überall durch `xyz` ersetzen
+* `:%s/<ctrl-r>"/xyz/g`	Letzten geyankten Ausdruck überall durch `xyz` ersetzen
+* `:s/ /\r/`	Leerstellen durch Zeilenumbruch ersetzen
 
 Suchen
 --------------------
@@ -48,11 +53,6 @@ Suchen
 * `STRG-r` 	In der Kommandozeile, Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
 * `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.
 * 
-* `:s/abc/xyz/`	`abc` in aktueller Zeile durch `xyz` ersetzen
-* `:%s/abc/xyz`	`abc` überall durch `xyz` ersetzen
-* `:%s/<ctrl-r><ctrl-w>/xyz/g`	Wort unter Cursor überall durch `xyz` ersetzen
-* `:%s/<ctrl-r>"/xyz/g`	Letzten geyankten Ausdruck überall durch `xyz` ersetzen
-* `:s/ /\r/`	Leerstellen durch Zeilenumbruch ersetzen
 
 
 Makros aufzeichen
