@@ -8,6 +8,10 @@
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
 * `:terminal`	Neue Console
 * `:set nowrap`	Schalten den automatischen Zeilenumbruch aus
+* `<ctrl>-n`	Autovervollständigung im Einfügemodus
+
+
+
 
 Bewegen in Dokument
 --------------------
@@ -15,6 +19,8 @@ Bewegen in Dokument
 * `e`		Ende eines Worts
 * `{[]}` 		Satzweise oder Abschnittsweise 
 * `[<n>] GG`	wir springen zur zeile n
+* `<ctrl>-e`	Abwärts Scrollen
+* `<ctrl>-y`	Aufwärts Scrollen
 
 
 Suchen und Ersetzen mit :/s
@@ -76,14 +82,21 @@ Fenster:
 * `:split <file>`	<file> in neuem Fenster öffnen
 * `:new`		Neuen Buffer in neuem Fenster öffnen
 * `:sview <file>`	:split und :view <file>
-
 * `C-w w`	Nächstes Fenster selektieren (zyklisch)
 * `C-w j`		Ein Fenster nach unten
 * `C-w k`		Ein Fenster nach oben
 * `<n>C-w +`	Fenster um <n> Zeilen vergrößern
 * `<n>C-w -`	Fenster um <n> Zeilen verkleinern
+* `<n>C-w <`	Fenster um <n> Zeichen verbreitern
+* `<n>C-w >`	Fenster um <n> Zeichen verschmalen
 * `<n>C-w _`	Fenstergröße auf <n> Zeilen setzen (ohne <n>: maximal)
-* `C-w =`		Alle Fenster gleichgroß
+* `C-w =`	Alle Fenster gleichgroß
+* `:sp datei`	Bildschirm teilen und datei in neuem Fenster anzeigen:
+
+Sitzung:
+-------
+* `:mks!`	Aktuelle Session inkl. aller Buffer und Fenster speichern
+* `vi -S`	Vim mit gespeicherter Session startn
 
 Register
 --------------------
@@ -91,6 +104,15 @@ Die Register sind zwischenablagen welche man durch :registers auflisten kann
 bei der Verwendung von d oder dd wird in die register 1- 9 nach und nach die Daten geschrieben, die gelöscht wurden.
 mit " kann man auf ein register zugreifen, in `"+` ist die akuelle systemweite Zwischenablagen, mit `"+p` kannst du da was rein kopieren oder raus holen. 
 
+Folds
+--------------------
+
+* `zf` 	Fold aus markiertem Bereich erstellen
+* `zd` 	Aktuellen Fold löschen
+* `zR` 	Alle Folds öffnen
+* `zM` 	Alle Folds schliessen
+* `zo` 	Fold unter Cursor öffnen
+* `zc` 	Fold unter Cursor schliessen
 
 Rezepte
 ------------------
