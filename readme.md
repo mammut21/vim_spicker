@@ -1,4 +1,6 @@
-# VIM - Befehle 
+VIM - Schnellübersicht
+----------
+
 * `STRG-W` 	Fenster wechseln mit Pfeiltasten,
   		oder wenn man das Terminal offen hat, kann man : eingeben und andere Befehle `STRG-r`
 * `STRG-r` 	Text Einfügen im `:`Kommandozeile,  dazu muss nach dem `STRG-r` noch das Register angegeben werden + für normal Zwischeanblage.
@@ -11,7 +13,8 @@
 * `<ctrl>-n`	Autovervollständigung im Einfügemodus
 * `<ctrl>-N`	Autovervollständigung im Einfügemodus alle offene Buffer
 *`%s/^[\ \t]*\n//g`	Leerzeichen entfernen
-
+*`set ignorecase`	Bei der suche Groß und Klein nicht unterschieden
+*`set smmatcase`	Wenn großbuchstaben verwendet werden, dann wird casesensetive gearbeitet
 
 
 
