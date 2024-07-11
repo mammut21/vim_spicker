@@ -1,35 +1,43 @@
-" cd ~/.vim/bundle
-" git clone https://github.com/VundleVim/Vundle.vim.git
+" mkdir vimfiles
+" mkdir .vimundos
+" google suchen nach vim-plug
+" junegunn/vim-plug: :hibiscus: Minimalist Vim Plugin Manager
+" dort nach Download plug.vim and put it in the "autoload" directory. suchen und die plug.vim downloaden
+" im verzeichnis vimfiles/autoload eine datei mit dem namen plug.vim anlegen und den inhalt der obrigen Datei reinkopieren.
 " Beginn Plugin Vervollständigung
+
 set nocompatible
 filetype off
 
+set number
+" Es werden die relativen Zeilennummer am rand angezeig aktuellen Positionen am Rand 
+set relativenumber
+" setzt suche groß und klein außer kraft
+set ignorecase
+" set wenn doch ein großbuchtabe eingegeben wir case insenstiv wieder aus
+set smartcase 
+
 " Hiermit wird die Rechtschreibung mit geladen
 :map <F12> :w!<CR>:!aspell --lang=german check %<CR>:e! %<CR>
-
-" Vundle einrichten
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
+" Plug ins installieren
+call plug#begin()
 
 " Plugins hier einfügen
-Plugin 'mbbill/undotree'
-Plugin 'davidhalter/jedi-vim'
-" ipython Plugin
-Plugin 'goerz/jupytext.vim'
-Plugin 'jpalardy/vim-slime'
-Plugin 'hanschen/vim-ipython-cell'
-" start durch :Ipython
-"
- Plugin 'scrooloose/nerdtree'
- call vundle#end()
-filetype plugin indent on
+Plug 'mbbill/undotree'
+Plug 'davidhalter/jedi-vim'
 
+" ipython Plugin
+" Plug 'goerz/jupytext.vim'
+" Plug 'jpalardy/vim-slime'
+" Plug 'hanschen/vim-ipython-cell'
+" start durch :Ipython
+
+ Plug 'scrooloose/nerdtree'
+
+call plug#end()
 " Ende Plugin
 " 
 
-set number
-" Es werden die relativen Zeilennummer am rand angezeig aktuellen Positionen am Rand 
-" set relativenumber
 
 " ========================================
 " Automatisches laden der .vimrc
