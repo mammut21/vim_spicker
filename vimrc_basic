@@ -1,30 +1,33 @@
+" Verzeichnisse erstellen
 " mkdir vimfiles
 " mkdir .vimundos
 " google suchen nach vim-plug
 " junegunn/vim-plug: :hibiscus: Minimalist Vim Plugin Manager
-" dort nach Download plug.vim and put it in the "autoload" directory. suchen und die plug.vim downloaden
-" im verzeichnis vimfiles/autoload eine datei mit dem namen plug.vim anlegen und den inhalt der obrigen Datei reinkopieren.
+" dort nach Download plug.vim and put it in the "autoload" directory suchen und die plug.vim downloaden
+" im Verzeichnis vimfiles/autoload eine Datei mit dem Namen plug.vim anlegen und den Inhalt der obrigen Datei reinkopieren.
 " Beginn Plugin Vervollständigung
 
 set nocompatible
 filetype off
 
 set number
-" Es werden die relativen Zeilennummer am rand angezeig aktuellen Positionen am Rand 
+" Es werden die relativen Zeilennummern am Rand angezeigt, außer bei der aktuellen Position
 set relativenumber
-" setzt suche groß und klein außer kraft
+" setzt Suche groß und klein außer Kraft
 set ignorecase
-" set wenn doch ein großbuchtabe eingegeben wir case insenstiv wieder aus
+" setzt, wenn doch ein Großbuchstabe eingegeben wird, case insensitive wieder aus
 set smartcase 
 
-" Hiermit wird die Rechtschreibung mit geladen
-:map <F12> :w!<CR>:!aspell --lang=german check %<CR>:e! %<CR>
-" Plug ins installieren
+" Hiermit wird die Rechtschreibung geladen
+map <F12> :w!<CR>:!aspell --lang=german check %<CR>:e! %<CR>
+" Plugins installieren
 call plug#begin()
 
 " Plugins hier einfügen
 Plug 'mbbill/undotree'
 Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/nerdtree'
+" Plug 'Valloric/YouCompleteMe'
 
 " ipython Plugin
 " Plug 'goerz/jupytext.vim'
@@ -32,37 +35,40 @@ Plug 'davidhalter/jedi-vim'
 " Plug 'hanschen/vim-ipython-cell'
 " start durch :Ipython
 
- Plug 'scrooloose/nerdtree'
-
 call plug#end()
 " Ende Plugin
-" 
 
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_min_num_of_chars_for_completion = 1
 
 " ========================================
-" Automatisches laden der .vimrc
+" Automatisches Laden der .vimrc
 " ========================================
 autocmd! bufwritepost .vimrc source %
 
-" sollte eingestellt sein damit wir nicht auf den Funktionsumfang von vi herabgestufft werden.
-set nocompatible
-
-" No backupfile damit wir nicht im Dateiverzeichnis swb files bekommen
+" Kein Backupfile, damit wir nicht im Dateiverzeichnis swb Files bekommen
 set nobackup
 set incsearch 
-" Besseres copy & paste
+" Besseres Copy & Paste
 set autoindent
-" Damit wird sicher gestelle das man den Buffer wechseln kann ohne ihn spreicher zu müssen.
+" Damit wird sichergestellt, dass man den Buffer wechseln kann, ohne ihn speichern zu müssen.
 set hidden
 set encoding=utf-8
-" Wenn man sucht wird das gleich geigt leidet :)
+" Wenn man sucht, wird das gleich angezeigt
 set hlsearch
-" Es wird bereits gesscrollt wenn man 7 zeilen vom ende ist, nicht erst wenn man auf der letzten Zeile ist.
+" Es wird bereits gescrollt, wenn man 7 Zeilen vom Ende ist, nicht erst, wenn man auf der letzten Zeile ist.
 set scrolloff=7
-" Schönes menue wird eingeplendent
+" Schönes Menü wird eingeblendet
 set wildmenu
 set foldcolumn=1
 
-" Das undo über geschlossene Dateien möglich machen
+" Das Undo über geschlossene Dateien möglich machen
 set undofile
 set undodir=$HOME/.vimundos/
+
+" Backspace im Insert-Modus korrekt konfigurieren
+set backspace=indent,eol,start
