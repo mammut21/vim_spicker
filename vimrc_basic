@@ -3,8 +3,8 @@
 " mkdir .vimundos
 " google suchen nach vim-plug
 " junegunn/vim-plug: :hibiscus: Minimalist Vim Plugin Manager
-" dort nach Download plug.vim and put it in the "autoload" directory suchen und die plug.vim downloaden
-" im Verzeichnis vimfiles/autoload eine Datei mit dem Namen plug.vim anlegen und den Inhalt der obrigen Datei reinkopieren.
+" dort nach Download plug.vim suchen, darunter müsste sowas ie Installation stehen diesen anweisungen folgen
+" dann in VIM :Pluginstall eingeben und fertig
 " Beginn Plugin Vervollständigung
 
 set nocompatible
