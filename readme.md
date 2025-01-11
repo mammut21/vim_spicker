@@ -10,6 +10,7 @@ VIM - Schnellübersicht
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
 * `:terminal`	Neue Console
 * `:set nowrap`	Schalten den automatischen Zeilenumbruch aus
+* `set mounse=a`	Schalten die Maus ein
 * `<ctrl>-n`	Autovervollständigung im Einfügemodus
 * `<ctrl>-N`	Autovervollständigung im Einfügemodus alle offene Buffer
 * `%s/^[\ \t]*\n//g`	Leerzeichen entfernen
