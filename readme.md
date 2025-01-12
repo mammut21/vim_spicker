@@ -1,23 +1,26 @@
 VIM - Schnellübersicht
 ----------
 
+* `STRG-r` 	Einfügen im Eingabe Modus aus einem beliebigen Buffer z.B + wenn man dann + noch drückt
 * `STRG-W` 	Fenster wechseln mit Pfeiltasten,
   		oder wenn man das Terminal offen hat, kann man : eingeben und andere Befehle `STRG-r`
-* `STRG-r` 	Text Einfügen im `:`Kommandozeile,  dazu muss nach dem `STRG-r` noch das Register angegeben werden + für normal Zwischeanblage.
 * `[<n>] GG`	wir springen zur Zeile n
 * `gg`		Dateianfang
 * `G`		Dateiende
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
 * `:terminal`	Neue Console
-* `:set nowrap`	Schalten den automatischen Zeilenumbruch aus
-* `set mounse=a`	Schalten die Maus ein
 * `<ctrl>-n`	Autovervollständigung im Einfügemodus
 * `<ctrl>-N`	Autovervollständigung im Einfügemodus alle offene Buffer
 * `%s/^[\ \t]*\n//g`	Leerzeichen entfernen
-* `set ignorecase`	Bei der suche Groß und Klein nicht unterschieden
+
+VIM - Einstellung ggf auch in die vimrc zu übernhmen
+------
+
 * `set smmatcase`	Wenn großbuchstaben verwendet werden, dann wird casesensetive gearbeitet
-
-
+* `set ignorecase`	Bei der suche Groß und Klein nicht unterschieden
+* `set whichwrap+=<,>,[,]`	Sorgt dafür das wenn man am anfang einer Zeile Steht un nach links drück am ende der vorherigen und umgekehrt springt
+* `set mounse=a`	Schalten die Maus ein
+* `:set nowrap`	Schalten den automatischen Zeilenumbruch aus
 
 Bewegen in Dokument
 --------------------
@@ -32,7 +35,7 @@ Bewegen in Dokument
 Suchen und Ersetzen mit :/s
 --------------------
 * wenn man `:`/s eingibt kann man Text auch 
-* `:%s/==.*//g` % bedeutet gesamtes dokument nicht nur die Zeile
+* `:%s/==.*//g` % bedeutet gesamtes dokument nicht nur die aktuelle Zeile
 * 		/g heißt alle vorkommen und nicht nur das erste in der zeile
 * `:%s/<suchetext>/<ersetzten>/g`
 * `:%s/ \(Hallo \) /<ersetzten>/g` wenn du mit regex arbeiten möchtes und Gruppen verwendest dann müssen die maskiert werden \( 
@@ -54,8 +57,8 @@ Suchen
 * `[I`		Suchtrefferliste anzeigen (großes I
 * `ggn`		um zum ersten Spiel zu springen, oder
 * `GN`		um zum letzten zu springen.
-* `STRG-r` 	In der Kommandozeile, Text aus eine Puffer einfügen der Puffer muss dann noch angegeben werden
 * `let @/ = @1`	kopiert den Inhalt des Registers 1 zum such register, damm kann man mit `/` und  `ENTER` nach dem Text aus der Zwischenablage suchen.
+* `STRG-r` 	Text Einfügen im `:`Kommandozeile,  dazu muss nach dem `STRG-r` noch das Register angegeben werden + für normal Zwischeanblage.
 * 
 
 
