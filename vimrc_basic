@@ -1,74 +1,130 @@
-" Verzeichnisse erstellen
-" mkdir vimfiles
-" mkdir .vimundos
-" google suchen nach vim-plug
-" junegunn/vim-plug: :hibiscus: Minimalist Vim Plugin Manager
-" dort nach Download plug.vim suchen, darunter müsste sowas ie Installation stehen diesen anweisungen folgen
-" dann in VIM :Pluginstall eingeben und fertig
-" Beginn Plugin Vervollständigung
+" ====================================================
+" Basis-Konfiguration für eine Python-IDE in Vim
+" ====================================================
+"
+" Voraussetzungen:
+"  - Vundle muss installiert sein (siehe GitHub: https://github.com/VundleVim/Vundle.vim)
+"  - Verzeichnisse erstellen:
+"       mkdir -p ~/.vimundos/
+"       mkdir -p ~/.vim/bundle
+"       cd ~/.vim/bundle
+"       git clone https://github.com/VundleVim/Vundle.vim.git
+"
+" Nach Anpassung dieser .vimrc: in Vim :PluginInstall ausführen.
+" ====================================================
 
-set nocompatible
-filetype off
+" ---------------------------
+" Hinweise & Weitere Anpassungen
+" ---------------------------
+" YouCompleteMe:
+"   - Beachte, dass YouCompleteMe separat kompiliert werden muss.
+"   - Folge hierzu der Anleitung auf GitHub: https://github.com/Valloric/YouCompleteMe
+"
+" jedi-vim:
+"   - Für optimale Python-Unterstützung empfiehlt sich der Einsatz von virtuellen Umgebungen.
+"
+" Vimspector:
+"   - Erfordert ggf. zusätzliche Konfigurationsdateien (z.B. .vimspector.json) im Projektverzeichnis.
+"
+" CtrlP:
+"   - Kann mit zusätzlichen Suchpfaden oder Ignorierregeln angepasst werden.
+"
+" Diese .vimrc stellt einen guten Ausgangspunkt dar. Gerne können wir gemeinsam weitere
+" Funktionen und Plugins besprechen und einbinden, je nachdem, welche Anforderungen Du
+" an Deine Python-Entwicklungsumgebung hast.
 
-set number
-" Es werden die relativen Zeilennummern am Rand angezeigt, außer bei der aktuellen Position
-set relativenumber
-" setzt Suche groß und klein außer Kraft
-set ignorecase
-" setzt, wenn doch ein Großbuchstabe eingegeben wird, case insensitive wieder aus
-set smartcase 
 
-" Hiermit wird die Rechtschreibung geladen
-map <F12> :w!<CR>:!aspell --lang=german check %<CR>:e! %<CR>
-" Plugins installieren
-call plug#begin()
+" ---------------------------
+" Allgemeine Einstellungen
+" ---------------------------
+set nocompatible              " Deaktiviert den Kompatibilitätsmodus zu vi
+set mouse=a                   " Mausunterstützung aktivieren
+set encoding=utf-8            " UTF-8 als Standard-Encoding
+set number                    " Absolute Zeilennummerierung
+set relativenumber            " Relative Zeilennummerierung (gut zur Navigation)
+set autoindent                " Automatisches Einrücken neuer Zeilen
+set smartindent               " Intelligentes Einrücken
+set hidden                    " Erlaubt Bufferwechsel ohne Speichern
+set nobackup                  " Keine Backup-Dateien erstellen
+set nowritebackup             " Keine Backup-Dateien beim Schreiben
+set incsearch                 " Inkrementelle Suche
+set hlsearch                  " Suchergebnisse hervorheben
+set scrolloff=7               " Immer 7 Zeilen Kontext beim Scrollen
+set wildmenu                  " Verbessertes Command-Line-Completion
+set foldcolumn=1              " Zeige Faltspalte (bei Codefaltung)
 
-" Plugins hier einfügen
-Plug 'mbbill/undotree'
-Plug 'davidhalter/jedi-vim'
-Plug 'scrooloose/nerdtree'
-" Plug 'Valloric/YouCompleteMe'
-
-" ipython Plugin
-" Plug 'goerz/jupytext.vim'
-" Plug 'jpalardy/vim-slime'
-" Plug 'hanschen/vim-ipython-cell'
-" start durch :Ipython
-
-call plug#end()
-" Ende Plugin
-
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_min_num_of_chars_for_completion = 1
-
-" ========================================
-" Automatisches Laden der .vimrc
-" ========================================
-autocmd! bufwritepost .vimrc source %
-
-" Kein Backupfile, damit wir nicht im Dateiverzeichnis swb Files bekommen
-set nobackup
-set incsearch 
-" Besseres Copy & Paste
-set autoindent
-" Damit wird sichergestellt, dass man den Buffer wechseln kann, ohne ihn speichern zu müssen.
-set hidden
-set encoding=utf-8
-" Wenn man sucht, wird das gleich angezeigt
-set hlsearch
-" Es wird bereits gescrollt, wenn man 7 Zeilen vom Ende ist, nicht erst, wenn man auf der letzten Zeile ist.
-set scrolloff=7
-" Schönes Menü wird eingeblendet
-set wildmenu
-set foldcolumn=1
-
-" Das Undo über geschlossene Dateien möglich machen
+" Undo-Einstellungen: persistentes Undo über Sessions hinweg
 set undofile
-set undodir=$HOME/.vimundos/
+set undodir=~/.vimundos/
 
-" Backspace im Insert-Modus korrekt konfigurieren
-set backspace=indent,eol,start
+" Automatisches Neuladen der .vimrc beim Speichern
+autocmd! bufwritepost $MYVIMRC source %
+
+" ---------------------------
+" Vundle und Plugin-Konfiguration
+" ---------------------------
+filetype off                  " Temporäres Abschalten von Filetype-Plugins
+
+" Vundle in den runtime path einbinden
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" --- Plugin-Liste ---
+" NERDTree: Dateiexplorer für Vim
+Plugin 'scrooloose/nerdtree'
+
+" YouCompleteMe: Intelligente Code-Vervollständigung
+Plugin 'Valloric/YouCompleteMe'
+
+" jedi-vim: Python-spezifische Autovervollständigung mit Jedi
+Plugin 'davidhalter/jedi-vim'
+
+" CtrlP: Fuzzy Finder zum schnellen Auffinden von Dateien
+Plugin 'kien/ctrlp.vim'
+
+" Vimspector: Multi-Sprachen-Debugger (unter anderem für Python)
+Plugin 'purevim/vimspector'
+
+" Undotree: Erweiterte Undo-Funktionalität
+Plugin 'mbbill/undotree'
+
+" vim-ipython-cell: Interaktive Entwicklung mit IPython-Zellen
+Plugin 'hanschen/vim-ipython-cell'
+
+" vim-slime: Sende Code an einen laufenden REPL (z.B. in tmux)
+Plugin 'jpalardy/vim-slime'
+
+" Falls Du weitere Plugins brauchst, können wir diese hier ergänzen
+
+call vundle#end()
+filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
+
+" ---------------------------
+" Benutzerdefinierte Tastenkürzel
+" ---------------------------
+
+" Rechtschreibprüfung (F12 speichert, prüft mit aspell auf Deutsch, lädt die Datei neu)
+nnoremap <F12> :w!<CR>:!aspell --lang=de check %<CR>:e! %<CR>
+
+" NERDTree:
+" - F2: Schnelles Ein-/Ausblenden des Dateiexplorers
+nnoremap <F2> :NERDTreeToggle<CR>
+" - Im NERDTree-Puffer: Mit <C-o> zum zuletzt besuchten Ort springen
+autocmd FileType nerdtree nmap <buffer> <C-o> go
+
+" CtrlP: Mit <leader>f (Standard: \f) den Fuzzy Finder öffnen
+nnoremap <leader>f :CtrlP<CR>
+
+" Undotree: Mit <leader>u den Undo-Baum ein-/ausblenden
+nnoremap <leader>u :UndotreeToggle<CR>
+
+" Vimspector: Debugging-Steuerung
+" - F5: Debugging starten/fortsetzen
+nmap <F5> <Plug>VimspectorContinue
+" (Weitere Vimspector-Mappings können nach Bedarf ergänzt werden)
+
+" vim-slime: Konfiguration, um Code an IPython (in tmux) zu senden
+let g:slime_target = "tmux"
+" Optional: Weitere Einstellungen für vim-ipython-cell findest Du in der Plugin-Dokumentation
+
+
