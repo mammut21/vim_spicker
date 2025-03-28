@@ -132,15 +132,37 @@ nnoremap <F2> :NERDTreeToggle<CR>
 " - Im NERDTree-Puffer: Mit <C-o> zum zuletzt besuchten Ort springen
 autocmd FileType nerdtree nmap <buffer> <C-o> go
 
-" CtrlP: Mit <leader>f (Standard: \f) den Fuzzy Finder öffnen
+" F3: Zum Durchschalten der Tabs (nächster Tab)
+nnoremap <F3> :tabnext<CR>
+
+" F4: Zum Durchschalten der Fenster (Splits)
+nnoremap <F4> <C-w>w
+
+" F5: Zum Durchschalten der offenen Buffer im aktuellen Fenster
+nnoremap <F5> :bnext<CR>
+
+" -----------------------------------------------------------------
+" CtrlP: Öffnet den Fuzzy Finder.
+" Mit diesem Mapping wird <leader>f genutzt, wobei <leader> ein 
+" konfigurierbarer Präfix ist (Standard: "\"), der Dir ermöglicht,
+" eigene Tastenkürzel zu definieren.
+" Beispiel: Wenn mapleader auf "\" gesetzt ist, aktivierst Du CtrlP
+" mit "\f". Du kannst den Leader-Key in Deiner .vimrc anpassen.
+" -----------------------------------------------------------------
 nnoremap <leader>f :CtrlP<CR>
 
-" Undotree: Mit <leader>u den Undo-Baum ein-/ausblenden
+" -----------------------------------------------------------------
+" Undotree: Blendet den Undo-Baum ein oder aus.
+" Dieses Mapping nutzt <leader>u, um den Undo-Baum zu öffnen oder zu schließen.
+" <leader> ist hier ebenfalls ein konfigurierbarer Präfix (Standard: "\").
+" Somit öffnest Du den Undo-Baum standardmäßig mit "\u". 
+" Denke daran, dass Du den Leader-Key nach Deinen Wünschen konfigurieren kannst.
+" -----------------------------------------------------------------
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Vimspector: Debugging-Steuerung
-" - F5: Debugging starten/fortsetzen
-nmap <F5> <Plug>VimspectorContinue
+" - F9: Debugging starten/fortsetzen
+nmap <F9> <Plug>VimspectorContinue
 " (Weitere Vimspector-Mappings können nach Bedarf ergänzt werden)
 
 " vim-slime: Konfiguration, um Code an IPython (in tmux) zu senden
