@@ -140,6 +140,32 @@ Plugin 'jpalardy/vim-slime'
 call vundle#end()
 filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
 
+
+" ---------------------------------------------------------------
+" LeaderF: Fuzzy Finder mit Popup-Fenster
+" ---------------------------------------------------------------
+" Wenn Du nicht nur nach Dateinamen, sondern auch nach Variablen, 
+" Methoden oder anderen Inhalten in Deinem Projekt suchen möchtest,
+" könnte LeaderF eine gute Wahl sein.
+"
+" LeaderF öffnet ein zentrales Popup-Fenster, in dem während des 
+" Tippens die Suchergebnisse angezeigt werden. So findest Du schnell
+" den gewünschten Code in Deinem Projekt.
+"
+" Installation:
+"   - Mit Vundle fügst Du folgenden Plugin-Eintrag ein:
+"         Plugin 'Yggdroot/LeaderF'
+"
+"   - Starte Vim und führe :PluginInstall aus.
+"
+" Standard-Mapping (Beispiel):
+"   - Öffne LeaderF für die Dateisuche mit <leader>f 
+"     (z.B. "\f", wenn <leader> der Backslash "\" ist).
+" ---------------------------------------------------------------
+nnoremap <leader>f :LeaderfFile<CR>
+
+
+
 " ---------------------------
 " Benutzerdefinierte Tastenkürzel
 " ---------------------------
