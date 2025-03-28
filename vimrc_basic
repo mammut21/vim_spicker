@@ -13,6 +13,27 @@
 " Nach Anpassung dieser .vimrc: in Vim :PluginInstall ausführen. Anschließend beachte ->  Quick Start Anleitung: Installation aller Completer für YCM
 " ====================================================
 
+
+" ---------------------------------------------------------------
+" Erklärung zum Leader-Key in Vim:
+" ---------------------------------------------------------------
+" Der Leader-Key ist ein benutzerdefinierbarer Präfix, der genutzt wird, um
+" eigene Tastenkombinationen (Mappings) zu definieren, ohne bestehende
+" Vim-Kommandos zu überschreiben.
+"
+" Standardmäßig ist dieser Key auf den Backslash "\" gesetzt.
+" Wichtig: Zum Suchen in Vim wird der Schrägstrich "/" verwendet, nicht der Backslash.
+"
+" Du kannst den Leader-Key in Deiner .vimrc ändern, falls Du den Backslash
+" für andere Zwecke nutzen möchtest. Zum Beispiel:
+"     let mapleader = ","
+" Damit wird das Komma (,) als Leader-Key genutzt.
+"
+" Beispiel-Mappings, die den Leader-Key verwenden:
+"   - <leader>f (Standard: "\f", wenn Leader "\") öffnet den Fuzzy Finder (CtrlP).
+"   - <leader>u (Standard: "\u") schaltet den Undo-Baum (Undotree) ein oder aus.
+" ---------------------------------------------------------------
+
 " ---------------------------
 " Hinweise & Weitere Anpassungen
 " ---------------------------
