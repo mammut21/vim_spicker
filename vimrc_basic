@@ -13,6 +13,26 @@
 " Nach Anpassung dieser .vimrc: in Vim :PluginInstall ausführen. Anschließend beachte ->  Quick Start Anleitung: Installation aller Completer für YCM
 " ====================================================
 
+" ================================================================
+" Quick Start Anleitung: Installation aller Completer für YCM
+" ================================================================
+
+"
+" 1. Abhängigkeiten für CMake, Vim und Python installieren:
+"    - Führe folgenden Befehl im Terminal aus:
+"         apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
+"         cd ~/.vim/bundle/YouCompleteMe
+"    - Navigiere in das YCM-Verzeichnis:
+"         cd ~/.vim/bundle/YouCompleteMe
+"    - Führe das Installationsskript aus:
+"         python3 install.py --all
+"
+" Hinweis:
+"    - Stelle sicher, dass alle notwendigen Pakete installiert sind, bevor Du YCM kompilierst.
+"    - Nach dem Hinzufügen der Plugin-Einträge in der .vimrc, starte Vim und führe :PluginInstall aus.
+"    - Weitere Informationen findest Du in der YCM-Dokumentation.
+" ================================================================
+
 
 " ---------------------------------------------------------------
 " Erklärung zum Leader-Key in Vim:
@@ -53,26 +73,6 @@
 " Diese .vimrc stellt einen guten Ausgangspunkt dar. Gerne können wir gemeinsam weitere
 " Funktionen und Plugins besprechen und einbinden, je nachdem, welche Anforderungen Du
 " an Deine Python-Entwicklungsumgebung hast.
-
-" ================================================================
-" Quick Start Anleitung: Installation aller Completer für YCM
-" ================================================================
-
-"
-" 1. Abhängigkeiten für CMake, Vim und Python installieren:
-"    - Führe folgenden Befehl im Terminal aus:
-"         apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
-"         cd ~/.vim/bundle/YouCompleteMe
-"    - Navigiere in das YCM-Verzeichnis:
-"         cd ~/.vim/bundle/YouCompleteMe
-"    - Führe das Installationsskript aus:
-"         python3 install.py --all
-"
-" Hinweis:
-"    - Stelle sicher, dass alle notwendigen Pakete installiert sind, bevor Du YCM kompilierst.
-"    - Nach dem Hinzufügen der Plugin-Einträge in der .vimrc, starte Vim und führe :PluginInstall aus.
-"    - Weitere Informationen findest Du in der YCM-Dokumentation.
-" ================================================================
 
 
 " ---------------------------
