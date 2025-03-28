@@ -93,6 +93,148 @@ set hlsearch                  " Suchergebnisse hervorheben
 set scrolloff=7               " Immer 7 Zeilen Kontext beim Scrollen
 set wildmenu                  " Verbessertes Command-Line-Completion
 set foldcolumn=1              " Zeige Faltspalte (bei Codefaltung)
+set ignorecase		      " Bei der Suche wird nicht case sensitiv gesucht
+set smartcase 	     	      " Beim Suchen wenn ein großbuchstabe eingegeben wird wieder case sensitiv gesucht.
+" =============================================================================
+" Vim Cheat Sheet – Wichtige Tastenkombinationen und Befehle
+" =============================================================================
+
+" ---------------------------
+" Grundlagen: Modi und Navigation
+" ---------------------------
+" Wechsel in den Einfügemodus:
+"   - i    : Einfügemodus an der Cursorposition starten.
+"   - I    : Einfügemodus am Zeilenanfang starten.
+"   - a    : Einfügemodus nach dem Cursor starten.
+"   - A    : Einfügemodus am Zeilenende starten.
+"
+" Zurück in den Normalmodus:
+"   - <Esc>
+"
+" Navigation im Normalmodus:
+"   - h, j, k, l   : Cursor links, runter, hoch, rechts bewegen.
+"   - w            : Zum Anfang des nächsten Wortes springen.
+"   - b            : Zum Anfang des vorherigen Wortes springen.
+"   - 0 (Null)     : Zum Zeilenanfang springen.
+"   - $            : Zum Zeilenende springen.
+
+" ---------------------------
+" Bearbeiten und Löschen
+" ---------------------------
+"   - dd       : Löscht die aktuelle Zeile.
+"   - yy       : Kopiert (yankt) die aktuelle Zeile.
+"   - p        : Fügt den kopierten Text nach dem Cursor ein.
+"   - u        : Macht die letzte Änderung rückgängig.
+"   - Ctrl+r   : Wiederholt den Rückgängig-Befehl (Redo).
+
+" ---------------------------
+" Suchen und Ersetzen
+" ---------------------------
+" Suchen:
+"   - /Suchbegriff : Sucht vorwärts nach dem Begriff (unter Beachtung von 
+"                    'ignorecase' und 'smartcase').
+"   - ?Suchbegriff : Sucht rückwärts.
+"   - n            : Zum nächsten Treffer springen.
+"   - N            : Zum vorherigen Treffer springen.
+"
+" Ersetzen:
+"   - :%s/alt/neu/g : Ersetzt im gesamten Dokument alle Vorkommen von 'alt' mit 'neu'.
+
+" ---------------------------
+" Fenster (Splits) und Tabs
+" ---------------------------
+" Fenster:
+"   - :split           : Öffnet ein neues horizontal geteiltes Fenster.
+"   - :vsplit          : Öffnet ein neues vertikal geteiltes Fenster.
+"   - Ctrl+w, w       : Wechsel zwischen geteilten Fenstern.
+"   - Ctrl+w, q       : Schließt das aktuelle Fenster.
+"
+" Tabs:
+"   - :tabnew [Datei]   : Öffnet einen neuen Tab (optional mit einer Datei).
+"   - :tabnext         : Wechselt zum nächsten Tab.
+"   - Beispiel Mapping (F3): Wechselt mit der F3-Taste zum nächsten Tab.
+"         nnoremap <F3> :tabnext<CR>
+
+" ---------------------------
+" Buffer Management
+" ---------------------------
+" Buffer-Liste anzeigen:
+"   - :ls oder :buffers
+" Buffer wechseln:
+"   - :bnext (oder :bn)  : Nächsten Buffer öffnen.
+"   - :bprev (oder :bp)  : Vorherigen Buffer öffnen.
+"   - Beispiel Mapping (F5): Wechselt mit der F5-Taste zum nächsten Buffer.
+"         nnoremap <F5> :bnext<CR>
+
+" ---------------------------
+" Spezielle Mappings (Leader-Key)
+" ---------------------------
+" <leader> ist ein benutzerdefinierter Präfix (Standard: "\"), der zur 
+" Gruppierung eigener Tastenkombinationen genutzt wird.
+" Beispiel: Um den Leader-Key zu ändern, füge in Deiner vimrc hinzu:
+"         let mapleader = ","
+"
+" Beispiele:
+"   - Fuzzy Finder (z.B. CtrlP, LeaderF oder Telescope):
+"         nnoremap <leader>f :CtrlP<CR>
+"         (öffnet den Fuzzy Finder, standardmäßig z.B. "\f")
+"
+"   - Undo-Baum (Undotree):
+"         nnoremap <leader>u :UndotreeToggle<CR>
+"         (öffnet oder schließt den Undo-Baum, standardmäßig "\u")
+"
+"   - vimrc neu laden:
+"         nnoremap <leader>sv :source $MYVIMRC<CR>
+"         (lädt die vimrc neu, z.B. "\sv")
+
+" ---------------------------
+" Diff und Änderungen anzeigen
+" ---------------------------
+" Unterschiede zwischen der aktuellen und der letzten gespeicherten Version anzeigen:
+"   - :vert diffsplit % 
+"     (öffnet eine vertikale Diff-Ansicht; schließe den Split, um wieder zurückzukehren)
+
+" ---------------------------
+" Suchen in mehreren Dateien (vimgrep)
+" ---------------------------
+" Um in allen Dateien, die einem bestimmten Muster entsprechen, nach einem
+" Suchbegriff zu suchen, kannst Du vimgrep verwenden.
+"
+" Beispiel: Suche nach 'Suchbegriff' in allen Dateien mit der Endung .xxx im
+" aktuellen Verzeichnis (rekursiv):
+"         :vimgrep /Suchbegriff/ **/*.xxx
+"
+" Anschließend kannst Du die Quickfix-Liste mit
+"         :copen
+" öffnen, um alle Treffer anzuzeigen und mit n/N oder den Pfeiltasten durch
+" die Ergebnisse zu navigieren.
+" 
+" ---------------------------
+" Funktionstasten (F-Tasten) Übersicht
+" ---------------------------
+"   - F3: Zum Wechseln des nächsten Tabs
+"         nnoremap <F3> :tabnext<CR>
+"   - F4: Zum Wechseln zwischen geteilten Fenstern
+"         nnoremap <F4> <C-w>w
+"   - F5: Zum Wechseln des nächsten Buffers
+"         nnoremap <F5> :bnext<CR>
+
+" ---------------------------
+" Beenden und Speichern
+" ---------------------------
+" Speichern:
+"   - :w      : Speichert die aktuelle Datei.
+"   - :wq oder :x : Speichert und beendet Vim.
+"
+" Beenden:
+"   - :qa     : Schließt alle Buffer und beendet Vim.
+"   - :qa!    : Erzwingt das Beenden, auch wenn ungespeicherte Änderungen vorliegen.
+"
+" Weitere nützliche Befehle:
+"   - :e!     : Lädt die aktuelle Datei neu und verwirft alle Änderungen.
+"   - :PluginInstall  : Installiert alle Plugins (bei Verwendung von Vundle).
+" =============================================================================
+
 
 " Undo-Einstellungen: persistentes Undo über Sessions hinweg
 set undofile
