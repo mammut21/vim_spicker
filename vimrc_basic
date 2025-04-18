@@ -358,4 +358,29 @@ nmap <F9> <Plug>VimspectorContinue
 let g:slime_target = "tmux"
 " Optional: Weitere Einstellungen für vim-ipython-cell findest Du in der Plugin-Dokumentation
 
+" Folgender Code sorgt dafür das man im Text über zeilenumbrüche mit hoch und
+" runter natürlich mit dem feiltasen über zeilenumbrüchen arbeiten kann
+" Normale Bewegung durch visuelle Zeilen im Normal-, Visual- und
+" Operator-Pending Mode
+ nnoremap j gj
+ nnoremap k gk
+ vnoremap j gj
+ vnoremap k gk
+ onoremap j gj
+ onoremap k gk
+"
+" " Pfeiltasten im Normal-, Visual- und Operator-Pending Mode
+ nnoremap <Down> gj
+ nnoremap <Up> gk
+ vnoremap <Down> gj
+ vnoremap <Up> gk
+ onoremap <Down> gj
+ onoremap <Up> gk
+"
+" " Pfeiltasten im Insert Mode (bleibt im Insert Mode!)
+ inoremap <Down> <C-o>gj
+ inoremap <Up> <C-o>gk
+ " Dafür sorgen das beim zeilenende automatisch auf angang der nächsten zeile
+ " gewechselt wird
+ set whichwrap+=<,>,h,l,[,]
 
