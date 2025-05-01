@@ -45,7 +45,7 @@ Suchen und Ersetzen mit :/s
 * `:%s/<ctrl-r><ctrl-w>/xyz/g`	Wort unter Cursor überall durch `xyz` ersetzen
 * `:%s/<ctrl-r>"/xyz/g`	Letzten geyankten Ausdruck überall durch `xyz` ersetzen
 * `:s/ /\r/`	Leerstellen durch Zeilenumbruch ersetzen
-* %s/\(^[^ ]*\)/((a.\1=b.\1) or (a.\1 is null) and (b.\1 is null)) and /g  der klassische join = or null spass
+* `%s/\(^[^ ]*\)/((a.\1=b.\1) or (a.\1 is null) and (b.\1 is null)) and /g`  der klassische join = or null spass
 
 Suchen
 --------------------
