@@ -1,6 +1,6 @@
 VIM - Schnellübersicht
 ----------
-
+* `diffthis` 	Zwei gesplittet Fenster vergleichen, per :diffthis in das einfenster dann  auch in das andere :diffthis dann wird nur diff angezeigt
 * `STRG-r` 	Einfügen im Eingabe Modus aus einem beliebigen Buffer z.B + wenn man dann + noch drückt
 * `STRG-W` 	Fenster wechseln mit Pfeiltasten,
   		oder wenn man das Terminal offen hat, kann man : eingeben und andere Befehle `STRG-r`
