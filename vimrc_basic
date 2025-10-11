@@ -265,8 +265,8 @@ Plugin 'davidhalter/jedi-vim'
 " CtrlP: Fuzzy Finder zum schnellen Auffinden von Dateien
 Plugin 'kien/ctrlp.vim'
 
-" Vimspector: Multi-Sprachen-Debugger (unter anderem für Python)
-Plugin 'purevim/vimspector'
+" Vimspector: Multi-Sprachen-Debugger (unter anderem für Python) funktioniert leider akutell nicht
+" Plugin 'purevim/vimspector'
 
 " Undotree: Erweiterte Undo-Funktionalität
 Plugin 'mbbill/undotree'
