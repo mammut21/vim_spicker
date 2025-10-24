@@ -97,13 +97,11 @@ Buffer:
 * `:b <N>`	Direkt zum Buffer mit Nummer
 * `:b <text>`	Wechsle per Namenssuche
 
-Beispiel:
-
-:b read
 
 Fenster:
 -------
 * `:split`		Aktuelles Fenster teilen
+* `:vsplit`		Aktuelles Fenster vertikal teilen
 * `:split <file>`	<file> in neuem Fenster öffnen
 * `:new`		Neuen Buffer in neuem Fenster öffnen
 * `:sview <file>`	:split und :view <file>
@@ -132,7 +130,10 @@ mit " kann man auf ein register zugreifen, in `"+` ist die akuelle systemweite Z
 Folds
 --------------------
 
+* `set foldmethode=indent` 	schaltet Fold ein und zwar nach Pythonart (einrückung)
 * `zf` 	Fold aus markiertem Bereich erstellen
+* `za` 	Aktuellen Fold welchsel (von auf zu zu und umgekehrt)
+* `zA` 	Aktuellen Fold welchsel und alle Unterfolds mit öffen (von auf zu zu und umgekehrt)
 * `zd` 	Aktuellen Fold löschen
 * `zR` 	Alle Folds öffnen
 * `zM` 	Alle Folds schliessen
