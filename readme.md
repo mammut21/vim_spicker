@@ -91,6 +91,15 @@ Buffer:
 * `:ls `	zeigt alle offenen Buffer an
 * `:b <n>` 	öffnet Buffer n
 * `:bd` 	heißt buffer delete -> schließt den aktuellen buffer oder mit <n> und ! denn n-ent unter Zang.
+* `:bn`		Nächster Buffer
+* `:bp`		Vorheriger Buffer
+* `:b#`		Wechsle zum zuletzt geöffneten Buffer
+* `:b <N>`	Direkt zum Buffer mit Nummer
+* `:b <text>`	Wechsle per Namenssuche
+
+Beispiel:
+
+:b read
 
 Fenster:
 -------
