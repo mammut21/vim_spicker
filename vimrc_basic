@@ -289,6 +289,8 @@ Plugin 'hanschen/vim-ipython-cell'
 " vim-slime: Sende Code an einen laufenden REPL (z.B. in tmux)
 Plugin 'jpalardy/vim-slime'
 
+":Tabularize /, kannst du text mit fester Breite umformatieren
+Plugin 'godlygeek/tabular'
 " Falls Du weitere Plugins brauchst, können wir diese hier ergänzen
 
 call vundle#end()
