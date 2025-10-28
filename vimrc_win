@@ -1,0 +1,155 @@
+"Lege die Datei als C:\Users\<DeinName>\_vimrc ab.
+"Plugins liegen unter C:\Users\<DeinName>\vimfiles\bundle\… (also ~/vimfiles/bundle/...).
+"Undo-Dateien unter ~/vimfiles/undofiles (Ordner ggf. anlegen).
+" Erstelle Plugin-Verzeichnis (falls nicht vorhanden)
+" mkdir $HOME\vimfiles\bundle -Force
+"
+" Lade Vundle selbst herunter
+" git clone https://github.com/VundleVim/Vundle.vim.git
+" $HOME\vimfiles\bundle\Vundle.vim
+" ====================================================
+" Basis-Konfiguration für eine Python-IDE in Vim (Windows)
+" ====================================================
+
+" --- Allgemeines / Encoding / Verhalten ---
+set nocompatible
+set encoding=utf-8
+set fileencodings=utf-8,latin1
+set fileformats=unix,dos
+set number
+set relativenumber
+set mouse=a
+set hidden
+set autoindent
+set smartindent
+set nobackup
+set nowritebackup
+set incsearch
+set hlsearch
+set scrolloff=7
+set wildmenu
+set foldcolumn=1
+set ignorecase
+set smartcase
+
+" System-Zwischenablage (Windows): macht "+ und * global
+set clipboard=unnamed,unnamedplus
+
+" Leader-Key (Komma ist unter Windows angenehm)
+let mapleader = ","
+
+" Persistentes Undo (Windows-Pfad unter ~/vimfiles/undofiles)
+set undofile
+set undodir=~/vimfiles/undofiles
+
+" vimrc beim Speichern neu laden
+autocmd! BufWritePost $MYVIMRC source %
+
+" --- (Optional) Python-Host für Plugins wie jedi-vim / YCM ---
+" Pfad ggf. anpassen, wenn mehrere Python-Installationen existieren:
+" let g:python3_host_prog = 'C:/Users/DeinName/AppData/Local/Programs/Python/Python312/python.exe'
+
+" ====================================================
+" Vundle / Plugin-Setup (Windows: ~/vimfiles statt ~/.vim)
+" ====================================================
+filetype off
+set rtp+=~/vimfiles/bundle/Vundle.vim
+call vundle#begin('~/vimfiles/bundle')
+
+" Plugin-Liste
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mbbill/undotree'
+Plugin 'jpalardy/vim-slime'
+Plugin 'godlygeek/tabular'
+" Optionaler moderner Fuzzy Finder (setzt Python voraus):
+Plugin 'Yggdroot/LeaderF'
+
+call vundle#end()
+filetype plugin indent on
+
+" ====================================================
+" Mappings & Shortcuts
+" ====================================================
+
+" Tabs / Fenster / Buffer
+nnoremap <F3> :tabnext<CR>
+nnoremap <F4> <C-w>w
+nnoremap <F5> :bnext<CR>
+
+" NERDTree togglen
+nnoremap <F2> :NERDTreeToggle<CR>
+autocmd FileType nerdtree nmap <buffer> <C-o> go
+
+" UndoTree
+nnoremap <leader>u :UndotreeToggle<CR>
+
+" Fuzzy Finder:
+" NUR EINE Belegung aktivieren – wir prüfen, welches Plugin geladen ist:
+if exists(':LeaderfFile')
+  nnoremap <leader>f :LeaderfFile<CR>
+elseif exists(':CtrlP')
+  nnoremap <leader>f :CtrlP<CR>
+endif
+
+" Rechtschreibprüfung: integrierte Spell-Engine (kein aspell nötig)
+" F12: speichern, Deutsch ein, prüfen, Quickfix öffnen
+nnoremap <F12> :w!<CR>:setlocal spell spelllang=de<CR>:lopen<CR>
+
+" Über visuelle Zeilen bewegen (auch bei Wraps)
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+onoremap j gj
+onoremap k gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
+vnoremap <Down> gj
+vnoremap <Up>   gk
+onoremap <Down> gj
+onoremap <Up>   gk
+inoremap <Down> <C-o>gj
+inoremap <Up>   <C-o>gk
+set whichwrap+=<,>,h,l,[,]
+
+" ====================================================
+" Plugin-spezifische Hinweise (Windows)
+" ====================================================
+
+" YouCompleteMe:
+"   - In PowerShell/CMD:
+"       cd $HOME/vimfiles/bundle/YouCompleteMe
+"       python install.py --all
+"   - Erfordert Build-Tools (z. B. Visual Studio Build Tools) und Python 3.
+
+" vim-slime:
+let g:slime_target = "tmux"   " Falls du kein tmux nutzt, auf 'neovim' oder andere Targets anpassen.
+
+" CtrlP: sofort starten mit <leader>f (s. o.)
+" LeaderF: dito; zeigt Popup-Fenster mit Live-Filter
+
+" Vimspector (optional):
+"   - Windows-Setup siehe Doku des Plugins.
+
+" ====================================================
+" Kurze Vim-Cheat-Sheet-Section
+" ====================================================
+
+" Navigation:
+"   h j k l | w/b | 0/$
+" Bearbeiten:
+"   dd/yy/p | u / <C-r>
+" Suchen:
+"   /foo ?foo | n/N | :%s/alt/neu/g
+" Splits/Tabs:
+"   :split / :vsplit | <C-w>w | :tabnew :tabnext
+" Buffer:
+"   :ls | :bn / :bp
+" Diff:
+"   :vert diffsplit %
+" Grep:
+"   :vimgrep /Suchbegriff/ **/*.py | :copen
+
+" Ende
