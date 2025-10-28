@@ -5,6 +5,7 @@
 " Voraussetzungen:
 "  - Vundle muss installiert sein (siehe GitHub: https://github.com/VundleVim/Vundle.vim)
 "  - Verzeichnisse erstellen:
+"       sudo apt install vim-gtk3  --Damit die zwischenablage Funktion 
 "       mkdir -p ~/.vimundos/
 "       mkdir -p ~/.vim/bundle
 "       cd ~/.vim/bundle
