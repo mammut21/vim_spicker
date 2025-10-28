@@ -11,17 +11,6 @@
 "       cd ~/.vim/bundle
 "       git clone https://github.com/VundleVim/Vundle.vim.git
 "
-" unter Windows so
-" C:\Users\Mathias\
-" │
-" ├── _vimrc
-" └── vimfiles\
-"     ├── bundle\
-"     │   ├── Vundle.vim\
-"     │   └── YouCompleteMe\
-"     ├── colors\
-"     ├── plugin\
-"     └── undofiles\
 " Nach Anpassung dieser .vimrc: in Vim :PluginInstall ausführen. Anschließend beachte ->  Quick Start Anleitung: Installation aller Completer für YCM
 " ====================================================
 
