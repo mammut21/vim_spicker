@@ -1,7 +1,7 @@
 " ====================================================
 " Basis-Konfiguration für eine Python-IDE in Vim
 " ====================================================
-"
+" 
 " Voraussetzungen:
 "  - Vundle muss installiert sein (siehe GitHub: https://github.com/VundleVim/Vundle.vim)
 "  - Verzeichnisse erstellen:
@@ -27,6 +27,11 @@
 "         cd ~/.vim/bundle/YouCompleteMe
 "    - Führe das Installationsskript aus:
 "         python3 install.py --all
+" 
+"Damit das richtig funktioniert musst du 
+"	cd ~/.vim/bundle/coc.nvim 
+"	npm install
+"	npm run build
 "
 " Hinweis:
 "    - Stelle sicher, dass alle notwendigen Pakete installiert sind, bevor Du YCM kompilierst.
@@ -47,7 +52,7 @@
 "
 " Du kannst den Leader-Key in Deiner .vimrc ändern, falls Du den Backslash
 " für andere Zwecke nutzen möchtest. Zum Beispiel:
-"     let mapleader = ","
+" let mapleader = ","
 " Damit wird das Komma (,) als Leader-Key genutzt.
 "
 " Beispiel-Mappings, die den Leader-Key verwenden:
@@ -80,6 +85,7 @@
 " Allgemeine Einstellungen
 " ---------------------------
 set nocompatible              " Deaktiviert den Kompatibilitätsmodus zu vi
+let mapleader = ","
 set mouse=a                   " Mausunterstützung aktivieren
 set encoding=utf-8            " UTF-8 als Standard-Encoding
 set number                    " Absolute Zeilennummerierung
@@ -257,11 +263,16 @@ call vundle#begin()
 " NERDTree: Dateiexplorer für Vim
 Plugin 'scrooloose/nerdtree'
 
+" Das ist der Client für den Server mit dem man zu definition und Referencen
+" springen kann
+
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
 " YouCompleteMe: Intelligente Code-Vervollständigung
 Plugin 'Valloric/YouCompleteMe'
 
 " jedi-vim: Python-spezifische Autovervollständigung mit Jedi
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 
 " CtrlP: Fuzzy Finder zum schnellen Auffinden von Dateien
 Plugin 'kien/ctrlp.vim'
@@ -280,7 +291,9 @@ Plugin 'jpalardy/vim-slime'
 
 ":Tabularize /, kannst du text mit fester Breite umformatieren
 Plugin 'godlygeek/tabular'
-" Falls Du weitere Plugins brauchst, können wir diese hier ergänzen
+
+" LeaderF: Fuzzy Finder mit Popup-Fenster
+Plugin 'Yggdroot/LeaderF'
 
 call vundle#end()
 filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
@@ -310,6 +323,20 @@ filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
 nnoremap <leader>f :LeaderfFile<CR>
 
 
+" === Coc Keymaps verweissuche und definitionsuche ===
+" Dann in Vim:
+" gd → springt zur Definition
+" gr → zeigt alle Referenzen (Quickfix)
+" K → zeigt Hover-Info
+" <C-Space> → IntelliSense-Vervollständigung
+nmap gd <Plug>(coc-definition)
+nmap gr <Plug>(coc-references)
+nmap gi <Plug>(coc-implementation)
+nnoremap K :call CocActionAsync('doHover')<CR>
+inoremap <silent><expr> <C-Space> coc#refresh()
+nmap [g <Plug>(coc-diagnostic-prev)
+nmap ]g <Plug>(coc-diagnostic-next)
+nmap <leader>q :copen<CR>
 
 " ---------------------------
 " Benutzerdefinierte Tastenkürzel
@@ -341,7 +368,7 @@ nnoremap <F5> :bnext<CR>
 " Beispiel: Wenn mapleader auf "\" gesetzt ist, aktivierst Du CtrlP
 " mit "\f". Du kannst den Leader-Key in Deiner .vimrc anpassen.
 " -----------------------------------------------------------------
-nnoremap <leader>f :CtrlP<CR>
+" nnoremap <leader>f :CtrlP<CR>
 
 " -----------------------------------------------------------------
 " Undotree: Blendet den Undo-Baum ein oder aus.
@@ -379,11 +406,14 @@ let g:slime_target = "tmux"
  vnoremap <Up> gk
  onoremap <Down> gj
  onoremap <Up> gk
-"
+
+" Hier wird dafür gesorgt das eine Textvorschlag mit Enter angenommen werden
+" kann.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
 " " Pfeiltasten im Insert Mode (bleibt im Insert Mode!)
  inoremap <Down> <C-o>gj
  inoremap <Up> <C-o>gk
  " Dafür sorgen das beim zeilenende automatisch auf angang der nächsten zeile
  " gewechselt wird
  set whichwrap+=<,>,h,l,[,]
-
