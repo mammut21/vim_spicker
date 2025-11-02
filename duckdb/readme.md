@@ -1,164 +1,129 @@
 ## Achtung KI generiert noch nicht gestest
 
-Super, hier ist die **erweiterte Version** als vollständige Vimscript-Datei.
-Neu dabei: zwei Befehle, die **den aktuellen Buffer** (oder **nur eine visuelle Auswahl**) als SQL an DuckDB schicken:
+Ja, absolut ✅ — das ist eine saubere Erweiterung!
+Wir bauen das Skript so um, dass du **die Datenbankdatei flexibel angeben** kannst, z. B.:
 
-* `:DuckFileQf [dbfile]` → Ausgabe ins **Quickfix-Fenster**
-* `:DuckFileReg [dbfile]` → Ausgabe ins **Register `+`**
+* Standard bleibt `./master.db`
+* Du kannst aber beim Aufruf eine andere angeben:
 
-Zusätzlich bleiben die Befehle erhalten, die den **Absatz aus `"+yip`** verwenden:
+  ```vim
+  :DuckQueryQf mydata.db
+  :DuckQueryReg ~/daten/verkehr.db
+  ```
 
-* `:DuckQueryQf [dbfile]`
-* `:DuckQueryReg [dbfile]`
-
-> Standard-DB ist `./master.db`. Du kannst optional eine andere DB-Datei als Argument angeben.
-> Optional: `let g:duck_cmd = 'duckcli'` für andere CLI.
+Und die Mappings (`\dq` / `\dr`) verwenden automatisch die Standard-DB.
 
 ---
 
-### `~/.vim/scripts/duckquery.vim`
+## 🧩 Neue Version: `duckquery.vim` (mit variabler Datenbank)
 
 ```vim
 " ~/.vim/scripts/duckquery.vim
-" SQL gegen DuckDB ausführen – wahlweise:
-"  A) Query aus Zwischenablage (+) → :DuckQueryQf / :DuckQueryReg
-"  B) Query aus Buffer/Range        → :DuckFileQf  / :DuckFileReg
-"
-" Default-DB: ./master.db (anpassbar über Argument oder g:duck_default_db)
-" Optionaler alternativer CLI-Befehl: g:duck_cmd (Standard: 'duckdb')
+" Führt SQL aus Register + gegen eine wählbare DuckDB-Datenbank aus.
+" Ausgabe kann im Quickfix-Fenster oder im Register + erscheinen.
 
-" let g:duck_cmd = 'duckcli'              " Optional: anderer Befehl
-" let g:duck_default_db = './silver.db'   " Optional: andere Standard-DB
+" Optional: alternativer Befehl (z.B. 'duckcli')
+" let g:duck_cmd = 'duckcli'
 
-" ----------------------------
-" User Commands (mit optionaler DB)
-" ----------------------------
 command! -nargs=? DuckQueryQf  call s:DuckQueryToQuickfix(<f-args>)
 command! -nargs=? DuckQueryReg call s:DuckQueryToRegister(<f-args>)
 
-" -range=%: standardmäßig ganzer Buffer; mit visueller Auswahl wird nur Range übergeben
-command! -nargs=? -range=% DuckFileQf  call s:DuckFileToQuickfix(<line1>, <line2>, <f-args>)
-command! -nargs=? -range=% DuckFileReg call s:DuckFileToRegister(<line1>, <line2>, <f-args>)
-
-" ----------------------------
-" Helpers
-" ----------------------------
-function! s#GetDefaultDb() abort
-  if exists('g:duck_default_db') && !empty(g:duck_default_db)
-    return g:duck_default_db
-  endif
-  return './master.db'
+function! s:GetDuckCmd(dbfile)
+    " Wähle CLI-Befehl
+    if exists('g:duck_cmd') && !empty(g:duck_cmd)
+        let l:cmd = g:duck_cmd
+    else
+        let l:cmd = 'duckdb'
+    endif
+    " Standarddatenbank ./master.db
+    if empty(a:dbfile)
+        let l:db = './master.db'
+    else
+        let l:db = a:dbfile
+    endif
+    return l:cmd . ' ' . shellescape(l:db)
 endfunction
 
-function! s#GetDuckCmd(dbfile) abort
-  let l:cmd = (exists('g:duck_cmd') && !empty(g:duck_cmd)) ? g:duck_cmd : 'duckdb'
-  let l:db  = empty(a:dbfile) ? s:GetDefaultDb() : a:dbfile
-  return l:cmd . ' ' . shellescape(l:db)
+function! s:DuckQueryToQuickfix(...) abort
+    let l:sql = getreg('+')
+    let l:dbfile = a:0 > 0 ? a:1 : ''
+    let l:out = systemlist(s:GetDuckCmd(l:dbfile), l:sql)
+    call setqflist([], 'r', {'title': 'DuckDB ' . (empty(l:dbfile) ? './master.db' : l:dbfile), 'lines': l:out})
+    copen
 endfunction
 
-function! s#SqlFromRange(first, last) abort
-  " Hole Zeilenbereich und verbinde mit Newlines (füge am Ende einen Newline hinzu)
-  let l:lines = getline(a:first, a:last)
-  return join(l:lines, "\n") . "\n"
+function! s:DuckQueryToRegister(...) abort
+    let l:sql = getreg('+')
+    let l:dbfile = a:0 > 0 ? a:1 : ''
+    let l:out = system(s:GetDuckCmd(l:dbfile), l:sql)
+    let @+ = l:out
+    echo "DuckDB-Ausgabe → Register + (" . (empty(l:dbfile) ? './master.db' : l:dbfile) . ")"
 endfunction
 
-" ----------------------------
-" Variante A: Query aus Zwischenablage (+)
-" ----------------------------
-function! s#DuckQueryToQuickfix(...) abort
-  let l:sql    = getreg('+')
-  let l:dbfile = a:0 > 0 ? a:1 : ''
-  let l:out    = systemlist(s:GetDuckCmd(l:dbfile), l:sql)
-  let l:title  = 'DuckDB ' . (empty(l:dbfile) ? s:GetDefaultDb() : a:1)
-  call setqflist([], 'r', {'title': l:title, 'lines': l:out})
-  copen
-endfunction
-
-function! s#DuckQueryToRegister(...) abort
-  let l:sql    = getreg('+')
-  let l:dbfile = a:0 > 0 ? a:1 : ''
-  let l:out    = system(s:GetDuckCmd(l:dbfile), l:sql)
-  let @+ = l:out
-  echo "DuckDB-Ausgabe → Register + (" . (empty(l:dbfile) ? s:GetDefaultDb() : a:1) . ")"
-endfunction
-
-" ----------------------------
-" Variante B: Query aus Buffer/Range
-" ----------------------------
-function! s#DuckFileToQuickfix(first, last, ...) abort
-  let l:sql    = s:SqlFromRange(a:first, a:last)
-  let l:dbfile = a:0 > 0 ? a:1 : ''
-  let l:out    = systemlist(s:GetDuckCmd(l:dbfile), l:sql)
-  let l:label  = bufname('%')
-  if empty(l:label) | let l:label = '[No Name]' | endif
-  let l:title  = printf('DuckDB %s — %s:%d-%d', (empty(l:dbfile) ? s:GetDefaultDb() : a:1), l:label, a:first, a:last)
-  call setqflist([], 'r', {'title': l:title, 'lines': l:out})
-  copen
-endfunction
-
-function! s#DuckFileToRegister(first, last, ...) abort
-  let l:sql    = s:SqlFromRange(a:first, a:last)
-  let l:dbfile = a:0 > 0 ? a:1 : ''
-  let l:out    = system(s:GetDuckCmd(l:dbfile), l:sql)
-  let @+ = l:out
-  echo "DuckDB-Ausgabe → Register + (" . (empty(l:dbfile) ? s:GetDefaultDb() : a:1) . ")"
-endfunction
-
-" ----------------------------
-" Komfort-Mappings
-" ----------------------------
-" Absatz → + yanken → Quickfix/Register (Standard-DB)
-nnoremap <leader>dQ "+yip:DuckQueryQf<CR>
-nnoremap <leader>dR "+yip:DuckQueryReg<CR>
-
-" Ganzer Buffer oder visuelle Auswahl → Quickfix/Register (Standard-DB)
-" Normal Mode: ganze Datei
-nnoremap <leader>dF :DuckFileQf<CR>
-nnoremap <leader>dG :DuckFileReg<CR>
-" Visual Mode: nur Auswahl
-vnoremap <leader>dF :'<,'>DuckFileQf<CR>
-vnoremap <leader>dG :'<,'>DuckFileReg<CR>
+" Komfort-Mappings:
+" \dq: Absatz in + yanken, Query ausführen, Quickfix zeigen (Default-DB ./master.db)
+nnoremap <leader>dq "+yip:DuckQueryQf<CR>
+" \dr: Absatz in + yanken, Query ausführen, Ausgabe in Register + schreiben
+nnoremap <leader>dr "+yip:DuckQueryReg<CR>
 ```
 
 ---
 
-### Einbinden & Nutzen
+## 🧠 Nutzung
 
-1. Datei speichern und laden
+### 1️⃣ Standard (Datenbank `./master.db`)
 
-```vim
-:source ~/.vim/scripts/duckquery.vim
+```
+\dq     → Absatz kopieren + ausführen → Quickfix
+\dr     → Absatz kopieren + ausführen → Register +
 ```
 
-oder dauerhaft in `~/.vimrc`:
+oder manuell:
 
 ```vim
-source ~/.vim/scripts/duckquery.vim
+:DuckQueryQf
+:DuckQueryReg
 ```
 
-2. **Absatz → Query**
+---
 
-* Quickfix: `\dQ`
-* Register: `\dR`
-
-3. **Datei/Range → Query**
-
-* **Ganzer Buffer** an DB → Quickfix: `\dF`
-* **Ganzer Buffer** an DB → Register: `\dG`
-* **Visuelle Auswahl** markieren, dann `\dF` oder `\dG`
-
-4. **Andere DB kurz angeben**
+### 2️⃣ Eigene Datenbank angeben
 
 ```vim
-:DuckFileQf ./andere.db
-:DuckQueryReg ~/data/test.db
+:DuckQueryQf ./daten/linie_2025.db
+:DuckQueryReg ~/duckdata/test.db
 ```
 
-5. **Optional** (Neovim/andere CLI)
+---
+
+### 3️⃣ Quickfix navigieren
+
+| Befehl    | Beschreibung              |
+| --------- | ------------------------- |
+| `:copen`  | Quickfix-Fenster öffnen   |
+| `:cclose` | schließen                 |
+| `:cc 2`   | 2. Ergebniszeile anzeigen |
+
+---
+
+### 💡 Optional: Datenbank-Wechsel per Variable
+
+Wenn du z. B. oft dieselbe DB nutzt, kannst du in Vim kurz setzen:
 
 ```vim
-:let g:duck_cmd = 'duckcli'
 :let g:duck_default_db = './silver/agg.db'
 ```
 
-Wenn du magst, kann ich dir noch eine kleine **Fehlermeldungs-Erkennung** einbauen, die bei DuckDB-Fehlern das Quickfix passend markiert (z. B. Zeilennummern aus Parse-Fehlern herauszieht).
+und in der Funktion (oben) einfach austauschen:
+
+```vim
+if exists('g:duck_default_db')
+    let l:db = g:duck_default_db
+else
+    let l:db = './master.db'
+endif
+```
+
+---
+
+Möchtest du, dass ich noch eine dritte Variante einbaue, die die **aktuell geöffnete Datei** (z. B. eine `.sql`-Datei) als Query verwendet statt den Absatz (`yip`)? Das wäre ideal, wenn du größere SQL-Skripte testweise ausführen willst.
