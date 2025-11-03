@@ -285,8 +285,8 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " CtrlP: Fuzzy Finder zum schnellen Auffinden von Dateien
 Plugin 'kien/ctrlp.vim'
-
-
+" csv daten fromat hi set ft=csv oder set filetype=csv
+Plugin 'mechatroner/rainbow_csv'
 " Undotree: Erweiterte Undo-Funktionalität
 Plugin 'mbbill/undotree'
 
