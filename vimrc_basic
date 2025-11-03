@@ -18,7 +18,7 @@
 " Quick Start Anleitung: Installation aller Completer für YCM
 " ================================================================
 
-"
+"Installation:
 " 1. Abhängigkeiten für CMake, Vim und Python installieren:
 "    - Führe folgenden Befehl im Terminal aus:
 "         apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
@@ -32,6 +32,23 @@
 "	cd ~/.vim/bundle/coc.nvim 
 "	npm install
 "	npm run build
+" Hinweis:
+" Wenn du das in den Projekten verwenden willst musst du in
+" schnittstellenverzeichnis folgende datei unter
+" vb_bachstein/.vim/coc-settings.json mit dem Inhalt
+" 
+"{
+"
+" "inlayHint.enable": false,
+" "python.inlayHints.variableTypes": false,
+" "python.inlayHints.functionReturnTypes":false,
+" "python.inlayHints.parameterNames.enabled": "none",
+" "python.analysis.extraPaths": [
+"  "../etl"
+"  ],
+"  "python.analysis.typeCheckingMode": "basic"
+"}
+" Dann findet er auch die ETL im verzeichnis drunter.
 "
 " Hinweis:
 "    - Stelle sicher, dass alle notwendigen Pakete installiert sind, bevor Du YCM kompilierst.
@@ -79,8 +96,6 @@
 " Diese .vimrc stellt einen guten Ausgangspunkt dar. Gerne können wir gemeinsam weitere
 " Funktionen und Plugins besprechen und einbinden, je nachdem, welche Anforderungen Du
 " an Deine Python-Entwicklungsumgebung hast.
-
-
 " ---------------------------
 " Allgemeine Einstellungen
 " ---------------------------
@@ -102,6 +117,7 @@ set wildmenu                  " Verbessertes Command-Line-Completion
 set foldcolumn=1              " Zeige Faltspalte (bei Codefaltung)
 set ignorecase		      " Bei der Suche wird nicht case sensitiv gesucht
 set smartcase 	     	      " Beim Suchen wenn ein großbuchstabe eingegeben wird wieder case sensitiv gesucht.
+colorscheme koehler 
 " =============================================================================
 " Vim Cheat Sheet – Wichtige Tastenkombinationen und Befehle
 " =============================================================================
@@ -258,36 +274,24 @@ filetype off                  " Temporäres Abschalten von Filetype-Plugins
 " Vundle in den runtime path einbinden
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
+Plugin 'VundleVim/Vundle.vim' 
 " --- Plugin-Liste ---
 " NERDTree: Dateiexplorer für Vim
 Plugin 'scrooloose/nerdtree'
 
 " Das ist der Client für den Server mit dem man zu definition und Referencen
 " springen kann
-
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-
-" YouCompleteMe: Intelligente Code-Vervollständigung
-Plugin 'Valloric/YouCompleteMe'
-
-" jedi-vim: Python-spezifische Autovervollständigung mit Jedi
-" Plugin 'davidhalter/jedi-vim'
 
 " CtrlP: Fuzzy Finder zum schnellen Auffinden von Dateien
 Plugin 'kien/ctrlp.vim'
 
-" Vimspector: Multi-Sprachen-Debugger (unter anderem für Python) funktioniert leider akutell nicht
-" Plugin 'purevim/vimspector'
 
 " Undotree: Erweiterte Undo-Funktionalität
 Plugin 'mbbill/undotree'
 
-" vim-ipython-cell: Interaktive Entwicklung mit IPython-Zellen
-Plugin 'hanschen/vim-ipython-cell'
-
-" vim-slime: Sende Code an einen laufenden REPL (z.B. in tmux)
-Plugin 'jpalardy/vim-slime'
+" Git Plugin mit Blame und Git diff
+Plugin 'https://github.com/tpope/vim-fugitive'
 
 ":Tabularize /, kannst du text mit fester Breite umformatieren
 Plugin 'godlygeek/tabular'
@@ -295,7 +299,11 @@ Plugin 'godlygeek/tabular'
 " LeaderF: Fuzzy Finder mit Popup-Fenster
 Plugin 'Yggdroot/LeaderF'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 call vundle#end()
+
 filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
 
 
@@ -329,7 +337,8 @@ nnoremap <leader>f :LeaderfFile<CR>
 " gr → zeigt alle Referenzen (Quickfix)
 " K → zeigt Hover-Info
 " <C-Space> → IntelliSense-Vervollständigung
-nmap gd <Plug>(coc-definition)
+" nmap gd <Plug>(coc-definition) " Siehe weiter unten es wird ein neuer Tab
+" geöffent
 nmap gr <Plug>(coc-references)
 nmap gi <Plug>(coc-implementation)
 nnoremap K :call CocActionAsync('doHover')<CR>
@@ -337,7 +346,14 @@ inoremap <silent><expr> <C-Space> coc#refresh()
 nmap [g <Plug>(coc-diagnostic-prev)
 nmap ]g <Plug>(coc-diagnostic-next)
 nmap <leader>q :copen<CR>
+" Definition in neuem Tab
+nnoremap gd :call CocActionAsync('jumpDefinition', 'tabe')<CR>
 
+" Definition im Vertikal-Split
+nnoremap gD :call CocActionAsync('jumpDefinition', 'vsplit')<CR>
+
+" Definition: springe zu bereits geöffnetem Tab/Window, sonst öffnen
+nnoremap gX :call CocActionAsync('jumpDefinition', 'drop')<CR>
 " ---------------------------
 " Benutzerdefinierte Tastenkürzel
 " ---------------------------
@@ -385,7 +401,7 @@ nmap <F9> <Plug>VimspectorContinue
 " (Weitere Vimspector-Mappings können nach Bedarf ergänzt werden)
 
 " vim-slime: Konfiguration, um Code an IPython (in tmux) zu senden
-let g:slime_target = "tmux"
+" let g:slime_target = "tmux"
 " Optional: Weitere Einstellungen für vim-ipython-cell findest Du in der Plugin-Dokumentation
 
 " Folgender Code sorgt dafür das man im Text über zeilenumbrüche mit hoch und
@@ -410,10 +426,13 @@ let g:slime_target = "tmux"
 " Hier wird dafür gesorgt das eine Textvorschlag mit Enter angenommen werden
 " kann.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
 
+inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " " Pfeiltasten im Insert Mode (bleibt im Insert Mode!)
  inoremap <Down> <C-o>gj
  inoremap <Up> <C-o>gk
  " Dafür sorgen das beim zeilenende automatisch auf angang der nächsten zeile
  " gewechselt wird
  set whichwrap+=<,>,h,l,[,]
+ nnoremap <leader>t :tab split<CR>
