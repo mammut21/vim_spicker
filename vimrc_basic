@@ -22,20 +22,16 @@
 " 1. Abhängigkeiten für CMake, Vim und Python installieren:
 "    - Führe folgenden Befehl im Terminal aus:
 "         apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
-"         cd ~/.vim/bundle/YouCompleteMe
-"    - Navigiere in das YCM-Verzeichnis:
-"         cd ~/.vim/bundle/YouCompleteMe
-"    - Führe das Installationsskript aus:
-"         python3 install.py --all
-" 
 "Damit das richtig funktioniert musst du 
-"	cd ~/.vim/bundle/coc.nvim 
-"	npm install
-"	npm run build
+"	    cd ~/.vim/bundle/coc.nvim 
+"	    npm install
+"	    npm run build
+"     :CocInstall coc-pyright 
+"     coc-pyright ist die Unterstützung für python
 " Hinweis:
-" Wenn du das in den Projekten verwenden willst musst du in
-" schnittstellenverzeichnis folgende datei unter
-" vb_bachstein/.vim/coc-settings.json mit dem Inhalt
+"       Wenn du das in den Projekten verwenden willst musst du in
+"       schnittstellenverzeichnis folgende datei unter
+"       vb_bachstein/.vim/coc-settings.json mit dem Inhalt
 " 
 "{
 "
