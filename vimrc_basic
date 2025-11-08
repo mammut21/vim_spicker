@@ -95,176 +95,51 @@
 " ---------------------------
 " Allgemeine Einstellungen
 " ---------------------------
-set nocompatible              " Deaktiviert den Kompatibilitätsmodus zu vi
 let mapleader = ","
+syntax on
+set autoindent                 " Automatisches Einrücken neuer Zeilen
+set backspace=indent,eol,start " Backspace löscht normal
+set clipboard=unnamedplus      " System-Clipboard verwenden
+set encoding=utf-8             " UTF-8 als Standard-Encoding
+set expandtab
+set foldcolumn=1               " Zeige Faltspalte (bei Codefaltung)
+set hidden                     " Erlaubt Bufferwechsel ohne Speichern
+set hlsearch                  " Suchergebnisse hervorheben
+set ignorecase		      " Bei der Suche wird nicht case sensitiv gesucht
+set incsearch                 " Inkrementelle Suche
 set mouse=a                   " Mausunterstützung aktivieren
-set encoding=utf-8            " UTF-8 als Standard-Encoding
+set mousemodel=popup_setpos " Maus & GUI-like Verhalten
+set nobackup                  " Keine Backup-Dateien erstellen
+set nocompatible              " Deaktiviert den Kompatibilitätsmodus zu vi
+set noerrorbells
+set nowritebackup             " Keine Backup-Dateien beim Schreiben
 set number                    " Absolute Zeilennummerierung
 set relativenumber            " Relative Zeilennummerierung (gut zur Navigation)
-set autoindent                " Automatisches Einrücken neuer Zeilen
-set smartindent               " Intelligentes Einrücken
-set hidden                    " Erlaubt Bufferwechsel ohne Speichern
-set nobackup                  " Keine Backup-Dateien erstellen
-set nowritebackup             " Keine Backup-Dateien beim Schreiben
-set incsearch                 " Inkrementelle Suche
-set hlsearch                  " Suchergebnisse hervorheben
+set ruler
 set scrolloff=7               " Immer 7 Zeilen Kontext beim Scrollen
-set wildmenu                  " Verbessertes Command-Line-Completion
-set foldcolumn=1              " Zeige Faltspalte (bei Codefaltung)
-set ignorecase		      " Bei der Suche wird nicht case sensitiv gesucht
+set shiftwidth=4
+set showmode                " Maus & GUI-like Verhalten
+set sidescrolloff=8         " Sanftes Scrolling
 set smartcase 	     	      " Beim Suchen wenn ein großbuchstabe eingegeben wird wieder case sensitiv gesucht.
+set smartindent               " Intelligentes Einrücken
+set tabstop=4
+set termguicolors
+set undodir=~/.vim/undo     " Undo-Historie
+set undofile               " Undo-Historie
+set visualbell    " Sanftes Scrolling
+set whichwrap+=<,>,h,l,[,]     " Dafür sorgen das beim zeilenende automatisch auf angang der nächsten zeile  gewechselt wird
+set wildmenu                  " Verbessertes Command-Line-Completion
 colorscheme koehler 
-" =============================================================================
-" Vim Cheat Sheet – Wichtige Tastenkombinationen und Befehle
-" =============================================================================
-
-" ---------------------------
-" Grundlagen: Modi und Navigation
-" ---------------------------
-" Wechsel in den Einfügemodus:
-"   - i    : Einfügemodus an der Cursorposition starten.
-"   - I    : Einfügemodus am Zeilenanfang starten.
-"   - a    : Einfügemodus nach dem Cursor starten.
-"   - A    : Einfügemodus am Zeilenende starten.
-"
-" Zurück in den Normalmodus:
-"   - <Esc>
-"
-" Navigation im Normalmodus:
-"   - h, j, k, l   : Cursor links, runter, hoch, rechts bewegen.
-"   - w            : Zum Anfang des nächsten Wortes springen.
-"   - b            : Zum Anfang des vorherigen Wortes springen.
-"   - 0 (Null)     : Zum Zeilenanfang springen.
-"   - $            : Zum Zeilenende springen.
-
-" ---------------------------
-" Bearbeiten und Löschen
-" ---------------------------
-"   - dd       : Löscht die aktuelle Zeile.
-"   - yy       : Kopiert (yankt) die aktuelle Zeile.
-"   - p        : Fügt den kopierten Text nach dem Cursor ein.
-"   - u        : Macht die letzte Änderung rückgängig.
-"   - Ctrl+r   : Wiederholt den Rückgängig-Befehl (Redo).
-
-" ---------------------------
-" Suchen und Ersetzen
-" ---------------------------
-" Suchen:
-"   - /Suchbegriff : Sucht vorwärts nach dem Begriff (unter Beachtung von 
-"                    'ignorecase' und 'smartcase').
-"   - ?Suchbegriff : Sucht rückwärts.
-"   - n            : Zum nächsten Treffer springen.
-"   - N            : Zum vorherigen Treffer springen.
-"
-" Ersetzen:
-"   - :%s/alt/neu/g : Ersetzt im gesamten Dokument alle Vorkommen von 'alt' mit 'neu'.
-
-" ---------------------------
-" Fenster (Splits) und Tabs
-" ---------------------------
-" Fenster:
-"   - :split           : Öffnet ein neues horizontal geteiltes Fenster.
-"   - :vsplit          : Öffnet ein neues vertikal geteiltes Fenster.
-"   - Ctrl+w, w       : Wechsel zwischen geteilten Fenstern.
-"   - Ctrl+w, q       : Schließt das aktuelle Fenster.
-"
-" Tabs:
-"   - :tabnew [Datei]   : Öffnet einen neuen Tab (optional mit einer Datei).
-"   - :tabnext         : Wechselt zum nächsten Tab.
-"   - Beispiel Mapping (F3): Wechselt mit der F3-Taste zum nächsten Tab.
-"         nnoremap <F3> :tabnext<CR>
-
-" ---------------------------
-" Buffer Management
-" ---------------------------
-" Buffer-Liste anzeigen:
-"   - :ls oder :buffers
-" Buffer wechseln:
-"   - :bnext (oder :bn)  : Nächsten Buffer öffnen.
-"   - :bprev (oder :bp)  : Vorherigen Buffer öffnen.
-"   - Beispiel Mapping (F5): Wechselt mit der F5-Taste zum nächsten Buffer.
-"         nnoremap <F5> :bnext<CR>
-
-" ---------------------------
-" Spezielle Mappings (Leader-Key)
-" ---------------------------
-" <leader> ist ein benutzerdefinierter Präfix (Standard: "\"), der zur 
-" Gruppierung eigener Tastenkombinationen genutzt wird.
-" Beispiel: Um den Leader-Key zu ändern, füge in Deiner vimrc hinzu:
-"         let mapleader = ","
-"
-" Beispiele:
-"   - Fuzzy Finder (z.B. CtrlP, LeaderF oder Telescope):
-"         nnoremap <leader>f :CtrlP<CR>
-"         (öffnet den Fuzzy Finder, standardmäßig z.B. "\f")
-"
-"   - Undo-Baum (Undotree):
-"         nnoremap <leader>u :UndotreeToggle<CR>
-"         (öffnet oder schließt den Undo-Baum, standardmäßig "\u")
-"
-"   - vimrc neu laden:
-"         nnoremap <leader>sv :source $MYVIMRC<CR>
-"         (lädt die vimrc neu, z.B. "\sv")
-
-" ---------------------------
-" Diff und Änderungen anzeigen
-" ---------------------------
-" Unterschiede zwischen der aktuellen und der letzten gespeicherten Version anzeigen:
-"   - :vert diffsplit % 
-"     (öffnet eine vertikale Diff-Ansicht; schließe den Split, um wieder zurückzukehren)
-
-" ---------------------------
-" Suchen in mehreren Dateien (vimgrep)
-" ---------------------------
-" Um in allen Dateien, die einem bestimmten Muster entsprechen, nach einem
-" Suchbegriff zu suchen, kannst Du vimgrep verwenden.
-"
-" Beispiel: Suche nach 'Suchbegriff' in allen Dateien mit der Endung .xxx im
-" aktuellen Verzeichnis (rekursiv):
-"         :vimgrep /Suchbegriff/ **/*.xxx
-"
-" Anschließend kannst Du die Quickfix-Liste mit
-"         :copen
-" öffnen, um alle Treffer anzuzeigen und mit n/N oder den Pfeiltasten durch
-" die Ergebnisse zu navigieren.
-" 
-" ---------------------------
-" Funktionstasten (F-Tasten) Übersicht
-" ---------------------------
-"   - F3: Zum Wechseln des nächsten Tabs
-"         nnoremap <F3> :tabnext<CR>
-"   - F4: Zum Wechseln zwischen geteilten Fenstern
-"         nnoremap <F4> <C-w>w
-"   - F5: Zum Wechseln des nächsten Buffers
-"         nnoremap <F5> :bnext<CR>
-
-" ---------------------------
-" Beenden und Speichern
-" ---------------------------
-" Speichern:
-"   - :w      : Speichert die aktuelle Datei.
-"   - :wq oder :x : Speichert und beendet Vim.
-"
-" Beenden:
-"   - :qa     : Schließt alle Buffer und beendet Vim.
-"   - :qa!    : Erzwingt das Beenden, auch wenn ungespeicherte Änderungen vorliegen.
-"
-" Weitere nützliche Befehle:
-"   - :e!     : Lädt die aktuelle Datei neu und verwirft alle Änderungen.
-"   - :PluginInstall  : Installiert alle Plugins (bei Verwendung von Vundle).
-" =============================================================================
-
-
-" Undo-Einstellungen: persistentes Undo über Sessions hinweg
-set undofile
-set undodir=~/.vimundos/
 
 " Automatisches Neuladen der .vimrc beim Speichern
 autocmd! bufwritepost $MYVIMRC source %
 
+" =============================================================================
 " ---------------------------
 " Vundle und Plugin-Konfiguration
 " ---------------------------
+" =============================================================================
+" =============================================================================
 filetype off                  " Temporäres Abschalten von Filetype-Plugins
 
 " Vundle in den runtime path einbinden
@@ -300,6 +175,15 @@ Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 
+" =============================================================================
+" =============================================================================
+" =============================================================================
+" =============================================================================
+
+
+
+
+
 filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
 
 
@@ -321,10 +205,10 @@ filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
 "   - Starte Vim und führe :PluginInstall aus.
 "
 " Standard-Mapping (Beispiel):
-"   - Öffne LeaderF für die Dateisuche mit <leader>f 
 "     (z.B. "\f", wenn <leader> der Backslash "\" ist).
 " ---------------------------------------------------------------
-nnoremap <leader>f :LeaderfFile<CR>
+"   - Öffne LeaderF für die Dateisuche mit <leader>f 
+nnoremap <leader>f :LeaderfFile<CR> 
 
 
 " === Coc Keymaps verweissuche und definitionsuche ===
@@ -428,7 +312,75 @@ inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " " Pfeiltasten im Insert Mode (bleibt im Insert Mode!)
  inoremap <Down> <C-o>gj
  inoremap <Up> <C-o>gk
- " Dafür sorgen das beim zeilenende automatisch auf angang der nächsten zeile
- " gewechselt wird
- set whichwrap+=<,>,h,l,[,]
  nnoremap <leader>t :tab split<CR>
+
+
+
+" ============================
+" vscode.vimrc – Verhalten wie VS Code
+" ============================
+
+" Direkt in den Insert-Modus starten
+" autocmd VimEnter * startinsert
+
+" ESC schließt Insert-Modus nicht sofort (nur per Ctrl-[)
+" inoremap <Esc> <Nop>
+
+
+" Copy/Paste wie VS Code
+" (Achtung: Terminal muss Ctrl+Shift-C/V an Vim weitergeben)
+tnoremap <C-S-v> <C-\><C-n>"+p
+inoremap <C-S-v> <C-R>+
+cnoremap <C-S-v> <C-R>+
+vnoremap <C-S-c> "+y
+vnoremap <C-S-x> "+d
+vnoremap <C-S-v> "+p
+nnoremap <C-S-v> "+p
+nnoremap <C-S-c> "+y
+nnoremap <C-S-x> "+d
+vnoremap <C-c> "+y
+
+" Das direkt zum suchen das ist <C-/> das komische rote dings
+inoremap  <Esc>/ 
+
+" --- Shift + Pfeiltasten markiert Text auch im Insert-Modus ---
+inoremap <S-Left>  <Esc>v<Left>
+inoremap <S-Right> <Esc><Right>v<Right>
+inoremap <S-Up>    <Esc>v<Up>
+inoremap <S-Down>  <Esc>v<Down>
+
+
+
+" ===== Zeilen/Blöcke verschieben wie VS Code (Alt+Up/Alt+Down) =====
+" Insert mode: aktuelle Zeile, danach wieder an die Schreibposition zurück
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up>   <Esc>:m .-2<CR>==gi
+
+" Visual mode: markierten Block verschieben (Markierung beibehalten)
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up>   :m '<-2<CR>gv=gv
+
+" Insert mode: Zeile, danach an alte Schreibposition zurück
+inoremap <C-S-Down> <Esc>:t.<CR>==gi
+
+
+
+
+nnoremap <C-l> :nohlsearch<CR>
+
+" Fenster einfach wechseln (Ctrl + Pfeile)
+nnoremap <C-Left>  <C-w>h
+nnoremap <C-Down>  <C-w>j
+nnoremap <C-Up>    <C-w>k
+nnoremap <C-Right> <C-w>l
+
+" Einfaches Speichern/Beenden
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+" nnoremap <C-S-q> :q<CR>
+"
+
+" <C-y> zum schnellen Beenden von Vim
+nnoremap <C-y> :q<CR>
+inoremap <C-y> <Esc>:q<CR>
+vnoremap <C-y> <Esc>:q<CR> inoremap <C-q> <Esc>:q<CR>
