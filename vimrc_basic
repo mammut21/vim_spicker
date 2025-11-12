@@ -388,3 +388,4 @@ nnoremap <C-y> :q<CR>
 inoremap <C-y> <Esc>:q<CR>
 vnoremap <C-y> <Esc>:q<CR> 
 nnoremap <C-a> gg<S-v>G
+inoremap <C-a> <ESC>gg<S-v>G
