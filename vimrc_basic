@@ -99,7 +99,7 @@ let mapleader = ","
 syntax on
 set autoindent                 " Automatisches Einrücken neuer Zeilen
 set backspace=indent,eol,start " Backspace löscht normal
-set clipboard=unnamedplus      " System-Clipboard verwenden
+" set clipboard=unnamedplus      " System-Clipboard verwenden 
 set encoding=utf-8             " UTF-8 als Standard-Encoding
 set expandtab
 set foldcolumn=1               " Zeige Faltspalte (bei Codefaltung)
@@ -338,6 +338,14 @@ vnoremap <C-S-v> "+p
 nnoremap <C-S-v> "+p
 nnoremap <C-S-c> "+y
 nnoremap <C-S-x> "+d
+vnoremap <C-c> "+y
+" 0) System-Clipboard NICHT global erzwingen
+set clipboard=
+
+" 1) Normal-Mode: <C-c> kopiert die GANZE Zeile in + (und damit automatisch auch in 0)
+nnoremap <C-c> "+yy
+
+" 2) Visual-Mode: <C-c> kopiert die Auswahl in + (und damit automatisch auch in 0)
 vnoremap <C-c> "+y
 
 " Das direkt zum suchen das ist <C-/> das komische rote dings
