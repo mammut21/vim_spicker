@@ -162,7 +162,7 @@ Plugin 'mechatroner/rainbow_csv'
 Plugin 'mbbill/undotree'
 
 " Git Plugin mit Blame und Git diff
-Plugin 'https://github.com/tpope/vim-fugitive'
+"Plugin 'https://github.com/tpope/vim-fugitive'
 
 ":Tabularize /, kannst du text mit fester Breite umformatieren
 Plugin 'godlygeek/tabular'
