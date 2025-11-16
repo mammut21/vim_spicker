@@ -250,8 +250,21 @@ autocmd FileType nerdtree nmap <buffer> <C-o> go
 " F3: Zum Durchschalten der Tabs (nächster Tab)
 nnoremap <F3> :tabnext<CR>
 
-" F4: Zum Durchschalten der Fenster (Splits)
-nnoremap <F4> <C-w>w
+
+" F4 toggelt Quickfix-Fenster
+nnoremap <F4> :call ToggleQuickfix()<CR>
+
+function! ToggleQuickfix()
+  " Prüfen ob Quickfix-Fenster offen ist
+  for win in range(1, winnr('$'))
+    if getwinvar(win, '&buftype') ==# 'quickfix'
+      cclose
+      return
+    endif
+  endfor
+  " Falls nicht offen → öffnen
+  copen
+endfunction
 
 " F5: Zum Durchschalten der offenen Buffer im aktuellen Fenster
 nnoremap <F5> :bnext<CR>
