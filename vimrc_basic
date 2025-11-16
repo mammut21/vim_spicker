@@ -269,6 +269,8 @@ endfunction
 " F5: Zum Durchschalten der offenen Buffer im aktuellen Fenster
 nnoremap <F5> :bnext<CR>
 
+
+
 " -----------------------------------------------------------------
 " CtrlP: Öffnet den Fuzzy Finder.
 " Mit diesem Mapping wird <leader>f genutzt, wobei <leader> ein 
@@ -387,7 +389,8 @@ vnoremap <A-Up>   :m '<-2<CR>gv=gv
 " Insert mode: Zeile, danach an alte Schreibposition zurück
 inoremap <C-S-Down> <Esc>:t.<CR>==gi
 
-
+" Im Visual-Mode: * sucht den markierten Text
+xnoremap * y/\V<C-R>=escape(@", '/\')<CR><CR>
 
 
 nnoremap <C-l> :nohlsearch<CR>
@@ -397,6 +400,10 @@ nnoremap <C-Left>  <C-w>h
 nnoremap <C-Down>  <C-w>j
 nnoremap <C-Up>    <C-w>k
 nnoremap <C-Right> <C-w>l
+
+" Buffer weckseln
+nnoremap <C-S-Left> :bp<CR>
+nnoremap <C-S-Right> :bNext<CR>
 
 " Einfaches Speichern/Beenden
 nnoremap <C-s> :w<CR>
@@ -410,3 +417,22 @@ inoremap <C-y> <Esc>:q<CR>
 vnoremap <C-y> <Esc>:q<CR> 
 nnoremap <C-a> gg<S-v>G
 inoremap <C-a> <ESC>gg<S-v>G
+
+
+
+augroup LogHighlight
+  autocmd!
+  autocmd BufRead,BufNewFile *.log set filetype=messages
+
+  " ░ Farben definieren
+  autocmd FileType messages hi LogError ctermfg=Red gui=bold
+  autocmd FileType messages hi LogWarn  ctermfg=Yellow gui=bold
+  autocmd FileType messages hi LogInfo  ctermfg=Blue
+  autocmd FileType messages hi LogDebug ctermfg=Cyan
+
+  " ░ Syntax-Regeln mit Highlight-Gruppen verknüpfen
+  autocmd FileType messages syntax match LogError /ERROR/
+  autocmd FileType messages syntax match LogWarn  /WARN/
+  autocmd FileType messages syntax match LogInfo  /INFO/
+  autocmd FileType messages syntax match LogDebug /DEBUG/
+augroup END
