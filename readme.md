@@ -9,9 +9,9 @@ VIM - Schnellübersicht
 * `G`		Dateiende
 * `:NERDTRee`	NERDTree starten ( Fileexplorer)
 * `:terminal`	Neue Console
-* `<ctrl>-n`	Autovervollständigung im Einfügemodus
-* `<ctrl>-N`	Autovervollständigung im Einfügemodus alle offene Buffer
-* `%s/^[\ \t]*\n//g`	Leerzeichen entfernen
+* `:tebnew ccopen`	öffnet das Quickfix Fenster in einem neuen Tab, get auch wenn es bereits offen ist
+* `<ctr>-W N`	In der Konsole in den Lesemodus wechseln um dann zu scrollen oder das Fenster zu wechseln
+* `%s/^[\ \t]*\n//g`	Leere Zeilen entfernen die ggf. leerzeichen oder Tabs enthalten
 
 Installation
 ------
