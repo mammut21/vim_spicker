@@ -132,7 +132,11 @@ set wildmenu                  " Verbessertes Command-Line-Completion
 colorscheme koehler 
 
 " Automatisches Neuladen der .vimrc beim Speichern
-autocmd! bufwritepost $MYVIMRC source %
+" .vimrc nach dem Speichern automatisch neu einlesen
+augroup ReloadVimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
 
 " =============================================================================
 " ---------------------------
@@ -435,4 +439,15 @@ augroup LogHighlight
   autocmd FileType messages syntax match LogWarn  /WARN/
   autocmd FileType messages syntax match LogInfo  /INFO/
   autocmd FileType messages syntax match LogDebug /DEBUG/
+augroup END
+
+
+" ===============================================================
+" Externe Änderungen automatisch laden, z. B. Änderungen durch Codex
+" ===============================================================
+set autoread
+
+augroup ExternalFileChanges
+    autocmd!
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 augroup END
