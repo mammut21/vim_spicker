@@ -1,75 +1,97 @@
+" ====================================================
+" Basis-Konfiguration für eine Python-IDE in Vim
+" ====================================================
+" 
+" Voraussetzungen:
+"  - Vundle muss installiert sein (siehe GitHub: https://github.com/VundleVim/Vundle.vim)
+"  - Verzeichnisse erstellen:
+"       sudo apt install vim-gtk3  --Damit die zwischenablage Funktion 
+"       mkdir -p ~/.vimundos/
+"       mkdir -p ~/.vim/bundle
+"       cd ~/.vim/bundle
+"       git clone https://github.com/VundleVim/Vundle.vim.git
+"
+" Nach Anpassung dieser .vimrc: in Vim :PluginInstall ausführen. Anschließend beachte ->  Quick Start Anleitung: Installation aller Completer für YCM
+" ====================================================
 
-" =============================================================================
-" VERWENDUNG DIESER .vimrc
-" =============================================================================
-"
-" Installation:
-"   1. Diese Datei als ~/.vimrc speichern oder dorthin kopieren:
-"        cp vimrc_angepasst ~/.vimrc
-"
-"   2. Voraussetzungen installieren:
-"        sudo apt install vim-gtk3 ripgrep nodejs npm
-"
-"   3. Vundle einmalig installieren:
-"        mkdir -p ~/.vim/bundle ~/.vim/undo
-"        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
-"   4. Vim starten und die Plugins installieren:
-"        :PluginInstall
-"
-"   5. Python-Unterstützung für CoC installieren:
-"        :CocInstall coc-pyright
-"
-" Nach einer Änderung an ~/.vimrc:
-"        :source $MYVIMRC
-"   Beim Speichern der .vimrc wird sie außerdem automatisch neu geladen.
-"
-" -----------------------------------------------------------------------------
-" WICHTIGE BEDIENUNG
-" -----------------------------------------------------------------------------
-" Der Leader-Key ist das Komma.  <leader>f bedeutet daher: ,f
-"
-"   ,f       Datei im aktuellen Projekt suchen
-"   ,g       Text im gesamten Projekt suchen
-"   ,b       Zwischen geöffneten Dateien (Buffern) wechseln
-"   ,r       Zuletzt verwendete Dateien anzeigen
-"
-"   gd       Zur Definition springen
-"   gr       Alle Referenzen anzeigen
-"   gi       Zur Implementierung springen
-"   Ctrl-o   Zum vorherigen Sprung zurückgehen
-"   Ctrl-i   Im Sprungverlauf wieder vorgehen
-"
-"   F2       Dateibaum ein- oder ausblenden
-"   F4       Quickfix-Fenster ein- oder ausblenden
-"   F5       Zum nächsten geöffneten Buffer wechseln
-"
-" Bedienung innerhalb von LeaderF:
-"   Text tippen    Suche eingrenzen
-"   Enter          Treffer öffnen
-"   Esc            Suche schließen
-"   Ctrl-x         Treffer horizontal geteilt öffnen
-"   Ctrl-]         Treffer vertikal geteilt öffnen
-"   Ctrl-t         Treffer in einem neuen Tab öffnen
-"
-" Externe Dateiänderungen, zum Beispiel durch Codex, werden automatisch erkannt.
-"
-" -----------------------------------------------------------------------------
-" OPTIONALE PROJEKTKONFIGURATION FÜR COC/PYRIGHT
-" -----------------------------------------------------------------------------
-" Projektbezogene Importpfade können in <projekt>/.vim/coc-settings.json
-" eingetragen werden. Beispiel:
-"
-" {
-"   "inlayHint.enable": false,
-"   "python.inlayHints.variableTypes": false,
-"   "python.inlayHints.functionReturnTypes": false,
-"   "python.inlayHints.parameterNames.enabled": "none",
-"   "python.analysis.extraPaths": ["../etl"],
-"   "python.analysis.typeCheckingMode": "basic"
-" }
-" =============================================================================
+" ================================================================
+" Quick Start Anleitung: Installation aller Completer für YCM
+" ================================================================
 
+"Installation:
+" 1. Abhängigkeiten für CMake, Vim und Python installieren:
+"    - Führe folgenden Befehl im Terminal aus:
+"         apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
+"Damit das richtig funktioniert musst du 
+"	    cd ~/.vim/bundle/coc.nvim 
+"	    npm install
+"	    npm run build
+"     :CocInstall coc-pyright 
+"     coc-pyright ist die Unterstützung für python
+" Hinweis:
+"       Wenn du das in den Projekten verwenden willst musst du in
+"       schnittstellenverzeichnis folgende datei unter
+"       vb_bachstein/.vim/coc-settings.json mit dem Inhalt
+" 
+"{
+"
+" "inlayHint.enable": false,
+" "python.inlayHints.variableTypes": false,
+" "python.inlayHints.functionReturnTypes":false,
+" "python.inlayHints.parameterNames.enabled": "none",
+" "python.analysis.extraPaths": [
+"  "../etl"
+"  ],
+"  "python.analysis.typeCheckingMode": "basic"
+"}
+" Dann findet er auch die ETL im verzeichnis drunter.
+"
+" Hinweis:
+"    - Stelle sicher, dass alle notwendigen Pakete installiert sind, bevor Du YCM kompilierst.
+"    - Nach dem Hinzufügen der Plugin-Einträge in der .vimrc, starte Vim und führe :PluginInstall aus.
+"    - Weitere Informationen findest Du in der YCM-Dokumentation.
+" ================================================================
+
+
+" ---------------------------------------------------------------
+" Erklärung zum Leader-Key in Vim:
+" ---------------------------------------------------------------
+" Der Leader-Key ist ein benutzerdefinierbarer Präfix, der genutzt wird, um
+" eigene Tastenkombinationen (Mappings) zu definieren, ohne bestehende
+" Vim-Kommandos zu überschreiben.
+"
+" Standardmäßig ist dieser Key auf den Backslash "\" gesetzt.
+" Wichtig: Zum Suchen in Vim wird der Schrägstrich "/" verwendet, nicht der Backslash.
+"
+" Du kannst den Leader-Key in Deiner .vimrc ändern, falls Du den Backslash
+" für andere Zwecke nutzen möchtest. Zum Beispiel:
+" let mapleader = ","
+" Damit wird das Komma (,) als Leader-Key genutzt.
+"
+" Beispiel-Mappings, die den Leader-Key verwenden:
+"   - <leader>f (Standard: "\f", wenn Leader "\") öffnet den Fuzzy Finder (CtrlP).
+"   - <leader>u (Standard: "\u") schaltet den Undo-Baum (Undotree) ein oder aus.
+" ---------------------------------------------------------------
+
+" ---------------------------
+" Hinweise & Weitere Anpassungen
+" ---------------------------
+" YouCompleteMe:
+"   - Beachte, dass YouCompleteMe separat kompiliert werden muss.
+"   - Folge hierzu der Anleitung auf GitHub: https://github.com/Valloric/YouCompleteMe
+"
+" jedi-vim:
+"   - Für optimale Python-Unterstützung empfiehlt sich der Einsatz von virtuellen Umgebungen.
+"
+" Vimspector:
+"   - Erfordert ggf. zusätzliche Konfigurationsdateien (z.B. .vimspector.json) im Projektverzeichnis.
+"
+" CtrlP:
+"   - Kann mit zusätzlichen Suchpfaden oder Ignorierregeln angepasst werden.
+"
+" Diese .vimrc stellt einen guten Ausgangspunkt dar. Gerne können wir gemeinsam weitere
+" Funktionen und Plugins besprechen und einbinden, je nachdem, welche Anforderungen Du
+" an Deine Python-Entwicklungsumgebung hast.
 " ---------------------------
 " Allgemeine Einstellungen
 " ---------------------------
@@ -102,7 +124,7 @@ set smartcase 	     	      " Beim Suchen wenn ein großbuchstabe eingegeben wird
 set smartindent               " Intelligentes Einrücken
 set tabstop=4
 set termguicolors
-set undodir=~/.vim/undo       " Undo-Historie dauerhaft speichern
+set undodir=~/.vim/undo     " Undo-Historie
 set undofile               " Undo-Historie
 set visualbell    " Sanftes Scrolling
 set whichwrap+=<,>,h,l,[,]     " Dafür sorgen das beim zeilenende automatisch auf angang der nächsten zeile  gewechselt wird
@@ -136,6 +158,8 @@ Plugin 'scrooloose/nerdtree'
 " springen kann
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
+" CtrlP: Fuzzy Finder zum schnellen Auffinden von Dateien
+Plugin 'kien/ctrlp.vim'
 " csv daten fromat hi set ft=csv oder set filetype=csv
 Plugin 'mechatroner/rainbow_csv'
 " Undotree: Erweiterte Undo-Funktionalität
@@ -167,50 +191,53 @@ call vundle#end()
 filetype plugin indent on   " Aktiviert Filetype-Plugins und Auto-Indention
 
 
+" ---------------------------------------------------------------
+" LeaderF: Fuzzy Finder mit Popup-Fenster
+" ---------------------------------------------------------------
+" Wenn Du nicht nur nach Dateinamen, sondern auch nach Variablen, 
+" Methoden oder anderen Inhalten in Deinem Projekt suchen möchtest,
+" könnte LeaderF eine gute Wahl sein.
+"
+" LeaderF öffnet ein zentrales Popup-Fenster, in dem während des 
+" Tippens die Suchergebnisse angezeigt werden. So findest Du schnell
+" den gewünschten Code in Deinem Projekt.
+"
+" Installation:
+"   - Mit Vundle fügst Du folgenden Plugin-Eintrag ein:
+"         Plugin 'Yggdroot/LeaderF'
+"
+"   - Starte Vim und führe :PluginInstall aus.
+"
+" Standard-Mapping (Beispiel):
+"     (z.B. "\f", wenn <leader> der Backslash "\" ist).
+" ---------------------------------------------------------------
+"   - Öffne LeaderF für die Dateisuche mit <leader>f 
+nnoremap <leader>f :LeaderfFile<CR> 
 
-" =============================================================================
-" Projekt-Navigation mit LeaderF
-" =============================================================================
-" Die Projektwurzel wird anhand typischer Projektdateien erkannt.
-" ripgrep durchsucht das Projekt schnell und berücksichtigt .gitignore.
-let g:Lf_RootMarkers = ['.git', 'pyproject.toml', 'package.json', 'go.mod', 'Cargo.toml', 'requirements.txt']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_DefaultExternalTool = 'rg'
-let g:Lf_UseVersionControlTool = 0
-let g:Lf_RgConfig = [
-      \ '--smart-case',
-      \ '--hidden',
-      \ '--glob=!.git/*',
-      \ '--glob=!.venv/*',
-      \ '--glob=!node_modules/*',
-      \ '--glob=!dist/*',
-      \ '--glob=!build/*'
-      \ ]
 
-" Wenige, leicht merkbare Befehle für große Projekte:
-nnoremap <silent> <leader>f :Leaderf file<CR>
-nnoremap <silent> <leader>g :Leaderf rg<CR>
-nnoremap <silent> <leader>b :Leaderf buffer<CR>
-nnoremap <silent> <leader>r :Leaderf mru<CR>
-
-" =============================================================================
-" Code-Navigation mit CoC
-" =============================================================================
-" gd öffnet die Definition im aktuellen Fenster. Mit Ctrl-o geht es zurück.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gi <Plug>(coc-implementation)
-
-" Zusätzliche Varianten, falls ein geteiltes Fenster oder ein Tab gewünscht ist:
-nnoremap <silent> gD :call CocActionAsync('jumpDefinition', 'vsplit')<CR>
-nnoremap <silent> gT :call CocActionAsync('jumpDefinition', 'tabe')<CR>
-nnoremap <silent> gX :call CocActionAsync('jumpDefinition', 'drop')<CR>
-
-nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+" === Coc Keymaps verweissuche und definitionsuche ===
+" Dann in Vim:
+" gd → springt zur Definition
+" gr → zeigt alle Referenzen (Quickfix)
+" K → zeigt Hover-Info
+" <C-Space> → IntelliSense-Vervollständigung
+" nmap gd <Plug>(coc-definition) " Siehe weiter unten es wird ein neuer Tab
+" geöffent
+nmap gr <Plug>(coc-references)
+nmap gi <Plug>(coc-implementation)
+nnoremap K :call CocActionAsync('doHover')<CR>
 inoremap <silent><expr> <C-Space> coc#refresh()
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap <silent> <leader>q :copen<CR>
+nmap [g <Plug>(coc-diagnostic-prev)
+nmap ]g <Plug>(coc-diagnostic-next)
+nmap <leader>q :copen<CR>
+" Definition in neuem Tab
+nnoremap gd :call CocActionAsync('jumpDefinition', 'tabe')<CR>
+
+" Definition im Vertikal-Split
+nnoremap gD :call CocActionAsync('jumpDefinition', 'vsplit')<CR>
+
+" Definition: springe zu bereits geöffnetem Tab/Window, sonst öffnen
+nnoremap gX :call CocActionAsync('jumpDefinition', 'drop')<CR>
 " ---------------------------
 " Benutzerdefinierte Tastenkürzel
 " ---------------------------
@@ -247,6 +274,16 @@ endfunction
 nnoremap <F5> :bnext<CR>
 
 
+
+" -----------------------------------------------------------------
+" CtrlP: Öffnet den Fuzzy Finder.
+" Mit diesem Mapping wird <leader>f genutzt, wobei <leader> ein 
+" konfigurierbarer Präfix ist (Standard: "\"), der Dir ermöglicht,
+" eigene Tastenkürzel zu definieren.
+" Beispiel: Wenn mapleader auf "\" gesetzt ist, aktivierst Du CtrlP
+" mit "\f". Du kannst den Leader-Key in Deiner .vimrc anpassen.
+" -----------------------------------------------------------------
+" nnoremap <leader>f :CtrlP<CR>
 
 " -----------------------------------------------------------------
 " Undotree: Blendet den Undo-Baum ein oder aus.
@@ -368,9 +405,9 @@ nnoremap <C-Down>  <C-w>j
 nnoremap <C-Up>    <C-w>k
 nnoremap <C-Right> <C-w>l
 
-" Buffer wechseln
+" Buffer weckseln
 nnoremap <C-S-Left> :bp<CR>
-nnoremap <C-S-Right> :bnext<CR>
+nnoremap <C-S-Right> :bNext<CR>
 
 " Einfaches Speichern/Beenden
 nnoremap <C-s> :w<CR>
