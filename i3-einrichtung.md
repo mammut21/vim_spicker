@@ -238,6 +238,8 @@ CopyQ wurde ausprobiert, danach aber wieder beendet und aus dem i3-Autostart sow
 
 Pasystray wird zusammen mit i3 gestartet und zeigt ein Lautsprechersymbol im System-Tray der oberen Leiste. Die Lautstärke wird in Schritten von 5 Prozent geregelt.
 
+Das ebenfalls installierte `xfce4-pulseaudio-plugin` wird nicht verwendet, weil es ein Plugin für das vollständige XFCE-Panel ist und nicht als eigenständiges Symbol im System-Tray von i3bar laufen kann. Dafür müsste zusätzlich `xfce4-panel` gestartet und anstelle von oder neben i3bar betrieben werden. Pasystray ist hier die schlankere Lösung, da es ohne XFCE-Panel direkt als Tray-Symbol funktioniert.
+
 - Mausrad über dem Symbol: Lautstärke ändern
 - Mittlere Maustaste oder `Alt + linke Maustaste`: Ausgabe stummschalten/aktivieren
 - Klick auf das Symbol: Menü für Lautstärke, Ein-/Ausgabegeräte und laufende Audiostreams
