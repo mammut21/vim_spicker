@@ -12,6 +12,7 @@ i3 war bereits installiert und lief als aktuelle X11-Sitzung. Installiert waren 
 - `rofi`
 - `dunst`
 - `flameshot`
+- `pasystray`
 - `xfce4-clipman`
 - `nm-applet` und `blueman-applet`
 - `xfce4-terminal`
@@ -233,12 +234,23 @@ Die Einrichtung verwendet Xfce Clipman als schlanken X11-Zwischenablage-Manager.
 
 CopyQ wurde ausprobiert, danach aber wieder beendet und aus dem i3-Autostart sowie den Tastenkombinationen entfernt. Die CopyQ-Pakete können installiert bleiben, werden von dieser Konfiguration jedoch nicht gestartet oder benötigt.
 
+### Lautstärkeregler im System-Tray
+
+Pasystray wird zusammen mit i3 gestartet und zeigt ein Lautsprechersymbol im System-Tray der oberen Leiste. Die Lautstärke wird in Schritten von 5 Prozent geregelt.
+
+- Mausrad über dem Symbol: Lautstärke ändern
+- Mittlere Maustaste oder `Alt + linke Maustaste`: Ausgabe stummschalten/aktivieren
+- Klick auf das Symbol: Menü für Lautstärke, Ein-/Ausgabegeräte und laufende Audiostreams
+- `Strg + Mausrad`: Mikrofonlautstärke ändern
+- `Strg + mittlere Maustaste`: Mikrofon stummschalten/aktivieren
+
 ### Systemfunktionen
 
 - Lauter, leiser, stumm und Mikrofon-stumm sind über die Sondertasten angebunden.
 - `Alt + Shift + X` sperrt den Bildschirm mit `i3lock`.
 - `xss-lock` sperrt den Bildschirm außerdem vor dem Energiesparmodus.
 - NetworkManager, Bluetooth und Benachrichtigungen werden beim Start eingebunden.
+- Pasystray stellt den Lautstärkeregler im System-Tray bereit.
 - Xfce Clipman wird für den Zwischenablageverlauf im System-Tray gestartet.
 - XDG-Autostart-Einträge werden über `dex` geladen.
 
@@ -260,7 +272,7 @@ Die Leiste befindet sich oben und zeigt:
 - verwendeten Arbeitsspeicher
 - Akkustand und verbleibende Laufzeit
 - Datum und Uhrzeit
-- System-Tray für Netzwerk, Bluetooth und andere Applets
+- System-Tray für Netzwerk, Bluetooth, Zwischenablage und Lautstärke
 
 ## Cheat Sheet: Tastenkombinationen
 
@@ -412,7 +424,7 @@ Gehe dabei vorsichtig und rechnerabhängig vor:
 - Terminal, Netzwerk-Applet, Bluetooth-Applet, Audio-System und Bildschirm-Sperre können je nach Distribution anders heißen.
 - Die Konfiguration ist für i3 unter X11 erstellt; unter Wayland ist ein anderer Window Manager und teilweise andere Hilfssoftware erforderlich.
 - Monitor-, Akku-, Netzwerk- und Helligkeitsgeräte müssen auf dem Zielrechner neu erkannt werden.
-- Xfce Clipman soll als Zwischenablage-Manager gestartet werden; CopyQ ist nicht erforderlich und soll nicht automatisch starten.
+- Xfce Clipman und Pasystray sollen als Tray-Dienste gestartet werden; CopyQ ist nicht erforderlich und soll nicht automatisch starten.
 - Vor dem Neuladen sollte Codex einen Git- oder Datei-Checkpoint anlegen, damit die Änderungen leicht rückgängig gemacht werden können.
 
 ## Alte Konfiguration wiederherstellen
