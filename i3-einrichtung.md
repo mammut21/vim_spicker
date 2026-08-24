@@ -12,7 +12,6 @@ i3 war bereits installiert und lief als aktuelle X11-Sitzung. Installiert waren 
 - `rofi`
 - `dunst`
 - `flameshot`
-- `copyq`
 - `nm-applet` und `blueman-applet`
 - `xfce4-terminal`
 
@@ -184,7 +183,6 @@ awk -F '|' '
 - `Alt + D` öffnet den Rofi-App-Launcher.
 - `Alt + S` durchsucht mit Rofi rekursiv die normalen Ordner im persönlichen Verzeichnis. Versteckte Programm- und Cache-Ordner, Abhängigkeiten sowie große eingebundene Verzeichnisse werden für eine schnelle Suche ausgelassen. Erkannte Textdateien öffnen im Terminal mit Vim; andere Dateitypen mit ihrer Standardanwendung.
 - `Alt + G` öffnet eine kombinierte Rofi-Suche für offene Fenster, installierte Programme und ausführbare Befehle.
-- `Alt + C` zeigt den durchsuchbaren CopyQ-Zwischenablageverlauf an.
 - `Alt + H` zeigt die aktuell dokumentierten Tastenkürzel in einem zentrierten, durchsuchbaren Rofi-Fenster an.
 - `Alt + Tab` öffnet eine Übersicht aller offenen Fenster. Solange `Alt` gehalten wird, schaltet weiteres Drücken von `Tab` durch die Liste. Beim Loslassen von `Alt` wird das markierte Fenster in den Vordergrund geholt.
 - Die Drucktaste startet die Bereichsauswahl von Flameshot.
@@ -229,13 +227,9 @@ Damit die Dateiliste schnell aufgebaut wird und keine internen Programmdateien e
 
 Versteckte Dateien direkt in `/home/mathias` können weiterhin gefunden werden; nur versteckte Verzeichnisbäume werden übersprungen.
 
-### Zwischenablageverlauf mit CopyQ
+### Zwischenablage
 
-CopyQ wird beim Start von i3 automatisch im Hintergrund gestartet und speichert neue Inhalte aus der Zwischenablage in einem Verlauf.
-
-`Alt + C` zeigt oder versteckt das CopyQ-Fenster. Sobald das Fenster geöffnet ist, filtert die Texteingabe den gesamten Verlauf. Mit den Pfeiltasten wird ein Eintrag ausgewählt; `Enter` oder `Strg + C` legt ihn wieder in die aktuelle Zwischenablage. `Entf` löscht einen Eintrag.
-
-Der Verlauf bleibt nach einem Neustart erhalten. Deshalb können darin auch sensible kopierte Inhalte auftauchen. Über die CopyQ-Einstellungen oder automatische Regeln können bestimmte Anwendungen und Inhalte von der Speicherung ausgeschlossen werden.
+Die Einrichtung verwendet die normale X11-Zwischenablage ohne zusätzlichen Verlauf. CopyQ wurde ausprobiert, danach aber wieder aus dem i3-Autostart und aus den Tastenkombinationen entfernt. `Alt + C` ist wieder frei. Die Pakete können installiert bleiben, werden von dieser Konfiguration jedoch nicht gestartet oder benötigt.
 
 ### Systemfunktionen
 
@@ -277,7 +271,6 @@ Die Leiste befindet sich oben und zeigt:
 | `Alt + D` | Programme mit Rofi suchen und starten |
 | `Alt + S` | Dateien rekursiv suchen; Textdateien mit Vim öffnen |
 | `Alt + G` | Fenster, Programme und Befehle gemeinsam durchsuchen |
-| `Alt + C` | CopyQ-Zwischenablageverlauf anzeigen/verstecken |
 | `Alt + H` | Zentrierte, durchsuchbare Tastenkürzel-Hilfe anzeigen |
 | `Alt + Tab` | Mit Rofi durch alle offenen Fenster wechseln |
 
@@ -374,6 +367,51 @@ sudo apt install brightnessctl playerctl picom feh
 ```
 
 Damit könnten anschließend zusätzliche Helligkeits- und Medientasten, Transparenz/Schatten sowie ein eigenes Hintergrundbild eingerichtet werden.
+
+## Auf einem anderen Rechner mit Codex einrichten
+
+Voraussetzung ist, dass Codex auf dem Zielrechner bereits installiert und einsatzbereit ist. Diese Datei wird Codex als Datei bereitgestellt oder in seinem Arbeitsverzeichnis abgelegt. Codex sollte die Konfiguration nicht blind kopieren, sondern zuerst Betriebssystem, vorhandene Programme, Bildschirmumgebung und bestehende Konfigurationsdateien prüfen.
+
+Zusammen mit dieser Datei kann folgender Prompt vollständig an Codex übergeben werden:
+
+```text
+Lies die bereitgestellte Datei i3-einrichtung.md vollständig und richte die
+darin beschriebene i3-Umgebung auf diesem Rechner ein.
+
+Gehe dabei vorsichtig und rechnerabhängig vor:
+
+1. Ermittle zuerst Distribution, Desktop-/X11-Sitzung, i3-Version, vorhandene
+   Programme, Tastaturlayout, Monitore und bestehende i3-/i3status-Dateien.
+2. Zeige mir kurz, was bereits vorhanden ist und welche Pakete noch fehlen.
+3. Sichere vorhandene Konfigurationen, bevor du sie änderst. Überschreibe keine
+   persönlichen Einstellungen oder fremden Dateien ohne Rückfrage.
+4. Verwende diese Dokumentation als Zielbeschreibung, passe aber alle absoluten
+   Pfade – insbesondere /home/mathias – an das tatsächliche Home-Verzeichnis und
+   den tatsächlichen Speicherort dieses Repositorys an.
+5. Installiere fehlende Pakete nur nach meiner Freigabe. Verwende die passenden
+   Paketnamen und den Paketmanager der erkannten Distribution.
+6. Erstelle die beschriebenen i3-, i3status- und Shell-Konfigurationen. Übernimm
+   die dokumentierten Skripte, passe rechnerabhängige Pfade an und setze bei den
+   Shell-Skripten das Ausführungsrecht.
+7. Achte besonders darauf, dass keybindings-help.sh auf diese lokale Kopie von
+   i3-einrichtung.md zeigt und dass keine Tastenkombination doppelt belegt ist.
+8. Prüfe alle Shell-Skripte mit sh -n und die i3-Konfiguration mit i3 -C. Prüfe
+   außerdem, ob alle referenzierten Befehle installiert und ausführbar sind.
+9. Lade i3 erst nach erfolgreicher Validierung neu. Beende nicht eigenständig
+   die grafische Sitzung und starte den Rechner nicht neu.
+10. Fasse zum Schluss die Änderungen, Sicherungsdateien, Testergebnisse und noch
+    offenen oder rechnerabhängigen Punkte zusammen.
+```
+
+### Wichtige Anpassungen auf dem Zielrechner
+
+- `/home/mathias` muss durch das tatsächliche Home-Verzeichnis ersetzt werden.
+- Der Pfad in `keybindings-help.sh` muss auf die lokale Kopie dieser Markdown-Datei zeigen.
+- Terminal, Netzwerk-Applet, Bluetooth-Applet, Audio-System und Bildschirm-Sperre können je nach Distribution anders heißen.
+- Die Konfiguration ist für i3 unter X11 erstellt; unter Wayland ist ein anderer Window Manager und teilweise andere Hilfssoftware erforderlich.
+- Monitor-, Akku-, Netzwerk- und Helligkeitsgeräte müssen auf dem Zielrechner neu erkannt werden.
+- CopyQ ist für diese Einrichtung nicht erforderlich und soll nicht automatisch gestartet werden.
+- Vor dem Neuladen sollte Codex einen Git- oder Datei-Checkpoint anlegen, damit die Änderungen leicht rückgängig gemacht werden können.
 
 ## Alte Konfiguration wiederherstellen
 
