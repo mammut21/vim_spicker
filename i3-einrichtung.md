@@ -12,6 +12,7 @@ i3 war bereits installiert und lief als aktuelle X11-Sitzung. Installiert waren 
 - `rofi`
 - `dunst`
 - `flameshot`
+- `xfce4-clipman`
 - `nm-applet` und `blueman-applet`
 - `xfce4-terminal`
 
@@ -180,9 +181,8 @@ awk -F '|' '
 ### Programme
 
 - `Alt + Enter` öffnet das XFCE-Terminal.
-- `Alt + D` öffnet den Rofi-App-Launcher.
+- `Alt + D` öffnet eine kombinierte Rofi-Suche für offene Fenster, installierte Programme und ausführbare Befehle.
 - `Alt + S` durchsucht mit Rofi rekursiv die normalen Ordner im persönlichen Verzeichnis. Versteckte Programm- und Cache-Ordner, Abhängigkeiten sowie große eingebundene Verzeichnisse werden für eine schnelle Suche ausgelassen. Erkannte Textdateien öffnen im Terminal mit Vim; andere Dateitypen mit ihrer Standardanwendung.
-- `Alt + G` öffnet eine kombinierte Rofi-Suche für offene Fenster, installierte Programme und ausführbare Befehle.
 - `Alt + H` zeigt die aktuell dokumentierten Tastenkürzel in einem zentrierten, durchsuchbaren Rofi-Fenster an.
 - `Alt + Tab` öffnet eine Übersicht aller offenen Fenster. Solange `Alt` gehalten wird, schaltet weiteres Drücken von `Tab` durch die Liste. Beim Loslassen von `Alt` wird das markierte Fenster in den Vordergrund geholt.
 - Die Drucktaste startet die Bereichsauswahl von Flameshot.
@@ -229,7 +229,9 @@ Versteckte Dateien direkt in `/home/mathias` können weiterhin gefunden werden; 
 
 ### Zwischenablage
 
-Die Einrichtung verwendet die normale X11-Zwischenablage ohne zusätzlichen Verlauf. CopyQ wurde ausprobiert, danach aber wieder aus dem i3-Autostart und aus den Tastenkombinationen entfernt. `Alt + C` ist wieder frei. Die Pakete können installiert bleiben, werden von dieser Konfiguration jedoch nicht gestartet oder benötigt.
+Die Einrichtung verwendet Xfce Clipman als schlanken X11-Zwischenablage-Manager. Clipman wird mit i3 gestartet und erscheint als Symbol im System-Tray der oberen i3-Leiste. Ein Klick auf das Symbol öffnet den Verlauf der kopierten Inhalte. `Alt + C` bleibt frei.
+
+CopyQ wurde ausprobiert, danach aber wieder beendet und aus dem i3-Autostart sowie den Tastenkombinationen entfernt. Die CopyQ-Pakete können installiert bleiben, werden von dieser Konfiguration jedoch nicht gestartet oder benötigt.
 
 ### Systemfunktionen
 
@@ -237,6 +239,7 @@ Die Einrichtung verwendet die normale X11-Zwischenablage ohne zusätzlichen Verl
 - `Alt + Shift + X` sperrt den Bildschirm mit `i3lock`.
 - `xss-lock` sperrt den Bildschirm außerdem vor dem Energiesparmodus.
 - NetworkManager, Bluetooth und Benachrichtigungen werden beim Start eingebunden.
+- Xfce Clipman wird für den Zwischenablageverlauf im System-Tray gestartet.
 - XDG-Autostart-Einträge werden über `dex` geladen.
 
 ### Darstellung
@@ -268,9 +271,8 @@ Die Leiste befindet sich oben und zeigt:
 | Tastenkombination | Funktion |
 |---|---|
 | `Alt + Enter` | XFCE-Terminal öffnen |
-| `Alt + D` | Programme mit Rofi suchen und starten |
+| `Alt + D` | Fenster, Programme und Befehle gemeinsam durchsuchen |
 | `Alt + S` | Dateien rekursiv suchen; Textdateien mit Vim öffnen |
-| `Alt + G` | Fenster, Programme und Befehle gemeinsam durchsuchen |
 | `Alt + H` | Zentrierte, durchsuchbare Tastenkürzel-Hilfe anzeigen |
 | `Alt + Tab` | Mit Rofi durch alle offenen Fenster wechseln |
 
@@ -410,7 +412,7 @@ Gehe dabei vorsichtig und rechnerabhängig vor:
 - Terminal, Netzwerk-Applet, Bluetooth-Applet, Audio-System und Bildschirm-Sperre können je nach Distribution anders heißen.
 - Die Konfiguration ist für i3 unter X11 erstellt; unter Wayland ist ein anderer Window Manager und teilweise andere Hilfssoftware erforderlich.
 - Monitor-, Akku-, Netzwerk- und Helligkeitsgeräte müssen auf dem Zielrechner neu erkannt werden.
-- CopyQ ist für diese Einrichtung nicht erforderlich und soll nicht automatisch gestartet werden.
+- Xfce Clipman soll als Zwischenablage-Manager gestartet werden; CopyQ ist nicht erforderlich und soll nicht automatisch starten.
 - Vor dem Neuladen sollte Codex einen Git- oder Datei-Checkpoint anlegen, damit die Änderungen leicht rückgängig gemacht werden können.
 
 ## Alte Konfiguration wiederherstellen
